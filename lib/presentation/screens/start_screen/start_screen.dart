@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_car/constants/constants.dart';
+import 'package:shop_car/presentation/screens/login_screen/login_screen.dart';
 import 'package:shop_car/styles/colors/color_manager.dart';
 
 class StartScreen extends StatelessWidget {
@@ -54,29 +55,36 @@ class StartScreen extends StatelessWidget {
                   Expanded(
                     child: ListView.separated(
                         itemBuilder: (context,index){
-                          return Container(
-                            margin: EdgeInsets.only(
-                              left: MediaQuery.sizeOf(context).height*.01,
-                              right: MediaQuery.sizeOf(context).height*.01,
-                              bottom: MediaQuery.sizeOf(context).height*.005
-                            ),
-                            padding: const EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: ColorManager.white
-                            ),
-                            child:  Row(
-                              children: [
-                                Image(
-                                  image: AssetImage(Constants.flags[index]),
-                                  height: 20,
-                                ),
-                                const Spacer(),
-                                Text(Constants.languages[index],style:  TextStyle(
-                                  color: ColorManager.textColor,
-                                  fontSize: MediaQuery.sizeOf(context).height*.02
-                                ),)
-                              ],
+                          return GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (_){
+                                return const LoginScreen();
+                              }));
+                            },
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                left: MediaQuery.sizeOf(context).height*.01,
+                                right: MediaQuery.sizeOf(context).height*.01,
+                                bottom: MediaQuery.sizeOf(context).height*.005
+                              ),
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: ColorManager.white
+                              ),
+                              child:  Row(
+                                children: [
+                                  Image(
+                                    image: AssetImage(Constants.flags[index]),
+                                    height: 20,
+                                  ),
+                                  const Spacer(),
+                                  Text(Constants.languages[index],style:  TextStyle(
+                                    color: ColorManager.textColor,
+                                    fontSize: MediaQuery.sizeOf(context).height*.02
+                                  ),)
+                                ],
+                              ),
                             ),
                           );
                         },

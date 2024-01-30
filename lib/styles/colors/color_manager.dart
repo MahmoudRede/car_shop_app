@@ -12,7 +12,7 @@ class ColorManager {
   static const Color white = Colors.white;
   static const Color red = Colors.red;
   static const Color purple = Colors.deepPurple;
-  static Color grey =  Colors.black.withOpacity(.5);
+  static Color grey =  Color(0xFF9C9C9C);
   static const Color primaryColor = Color(0xFF5C6E8C);
   static const Color secondaryColor = Color(0xFFFFCC30);
   static const Color lightColor2 = Color(0xFFF6F7F8);
