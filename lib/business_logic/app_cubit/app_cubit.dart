@@ -7,6 +7,14 @@ class AppCubit extends Cubit<AppStates> {
 
   static AppCubit get(context) => BlocProvider.of(context);
 
+  bool isValue=false;
+  void switchTerms(bool value){
+
+    isValue=value;
+    emit(SwitchTermsState());
+  }
+
+
 
 
 

@@ -8,6 +8,8 @@ class DefaultTextFormField extends StatefulWidget {
   IconData? suffixIcon;
   bool isPass;
   String value;
+  String validateMessage;
+  String suffixImage;
   int? lines;
   Color? hintColor;
   TextInputType textInputType;
@@ -21,10 +23,12 @@ class DefaultTextFormField extends StatefulWidget {
         this.isPass = false,
         this.isEnabled = true,
         required this.textInputType,
-       required this.labelText,
+        this.labelText='',
         this.value = '',
         this.prefixIcon,
         this.suffixIcon,
+        this.suffixImage='',
+        this.validateMessage='',
         this.lines = 1,
         Key? key})
       : super(key: key);
@@ -39,99 +43,105 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
   @override
   Widget build(BuildContext context) {
     return widget.isPass == false
-        ? TextFormField(
-          textInputAction: TextInputAction.next,
-          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-            fontSize: 15.0,
-            color: ColorManager.black,
-          ),
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            labelText: widget.labelText,
-            labelStyle:Theme.of(context).textTheme.headlineSmall!.copyWith(
-              fontSize: 16.0,
+        ? Container(
+           clipBehavior: Clip.antiAliasWithSaveLayer,
+           decoration: BoxDecoration(
+             borderRadius: BorderRadius.circular(50)
+           ),
+          child: TextFormField(
+            textInputAction: TextInputAction.next,
+            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              fontSize: 15.0,
               color: ColorManager.black,
             ),
-            errorStyle: Theme.of(context).textTheme.headlineSmall!.copyWith(
-              fontSize: 13.0,
-              color: ColorManager.red,
-            ),
+            decoration: InputDecoration(
 
-          ),
-          maxLines: widget.lines,
-          keyboardType: widget.textInputType,
-          controller: widget.controller,
-          enabled: widget.isEnabled,
-          onChanged: (value) {
-            widget.value = value;
-          },
-          validator: (value) {
-            if (value!.isEmpty) {
-              return "required";
-            }
-            return null;
-          },
-        )
-        : TextFormField(
-          textInputAction: TextInputAction.done,
-          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-            fontSize: 15.0,
-            color: ColorManager.black,
+              fillColor: ColorManager.white,
+              filled: true,
 
-          ),
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              labelText: widget.labelText,
-              labelStyle: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              border: InputBorder.none,
+              hintText: widget.hintText,
+              labelStyle:Theme.of(context).textTheme.headlineSmall!.copyWith(
                 fontSize: 16.0,
                 color: ColorManager.black,
               ),
+              hintStyle:Theme.of(context).textTheme.headlineSmall!.copyWith(
+                fontSize: 16.0,
+                color: ColorManager.grey,
+              ),
               errorStyle: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                fontSize: 15.0,
+                fontSize: 13.0,
                 color: ColorManager.red,
               ),
-              suffixIcon: widget.isPass == true
-                  ? IconButton(
-                onPressed: () {
-                  setState(() {
-                    isChecked = !isChecked;
-                  });
-                },
-                icon: isChecked == true
-                    ? const Icon(
-                  Icons.visibility_off,
-                  color: ColorManager.primaryColor,
-                )
-                    : const Icon(
-                  Icons.visibility,
-                  color: ColorManager.primaryColor,
+              suffixIcon: Image(
+                height: MediaQuery.sizeOf(context).height*.01,
+                image: AssetImage(widget.suffixImage),
+              ),
+
+            ),
+            maxLines: widget.lines,
+            keyboardType: widget.textInputType,
+            controller: widget.controller,
+            enabled: widget.isEnabled,
+            onChanged: (value) {
+              widget.value = value;
+            },
+            validator: (value) {
+              if (value!.isEmpty) {
+                return widget.validateMessage;
+              }
+              return null;
+            },
+          ),
+        )
+        : Container(
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50)
+          ),
+          child: TextFormField(
+            textInputAction: TextInputAction.done,
+            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              fontSize: 15.0,
+              color: ColorManager.black,
+
+            ),
+            decoration: InputDecoration(
+                fillColor: ColorManager.white,
+                filled: true,
+
+                border: InputBorder.none,
+                hintText: widget.hintText,
+                labelStyle:Theme.of(context).textTheme.headlineSmall!.copyWith(
+                  fontSize: 16.0,
+                  color: ColorManager.black,
                 ),
-              )
-                  : IconButton(
-                onPressed: () {},
-                icon: widget.suffixIcon != null
-                    ? Icon(
-                  widget.suffixIcon,
-                  color: ColorManager.primaryColor,
-                )
-                    : const SizedBox(
-                  height: 1,
-                  width: 1,
+                hintStyle:Theme.of(context).textTheme.headlineSmall!.copyWith(
+                  fontSize: 16.0,
+                  color: ColorManager.grey,
                 ),
-              )),
-          keyboardType: widget.textInputType,
-          controller: widget.controller,
-          enabled: widget.isEnabled,
-          obscureText: isChecked,
-          onChanged: (value) {
-            widget.value = value;
-          },
-          validator: (value) {
-            if (value!.isEmpty) {
-              return "required";
-            }
-            return null;
-          },
+                errorStyle: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                  fontSize: 15.0,
+                  color: ColorManager.red,
+                ),
+              suffixIcon: Image(
+              height: MediaQuery.sizeOf(context).height*.01,
+              image: AssetImage(widget.suffixImage),
+              ),),
+            keyboardType: widget.textInputType,
+            controller: widget.controller,
+            enabled: widget.isEnabled,
+            obscureText: isChecked,
+            onChanged: (value) {
+              widget.value = value;
+            },
+            validator: (value) {
+              if (value!.isEmpty) {
+                return widget.validateMessage;
+              }
+              return null;
+            },
+          ),
         );
   }
 }
