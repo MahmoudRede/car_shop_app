@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_car/business_logic/app_cubit/app_cubit.dart';
 import 'package:shop_car/business_logic/app_cubit/app_states.dart';
+import 'package:shop_car/presentation/screens/home_layout/home_layout.dart';
 import 'package:shop_car/presentation/screens/home_screen/home_screen.dart';
 import 'package:shop_car/presentation/screens/login_screen/login_screen.dart';
 import 'package:shop_car/presentation/screens/register_screen/register_screen.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 theme: getApplicationTheme(context),
-                home: const SplashScreen(),
+                home: const HomeLayout(),
               );
           },
       ),
