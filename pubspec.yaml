@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_bloc: ^8.1.3
   bloc: ^8.1.2
+  svg_flutter:
   shared_preferences: ^2.1.2
   fluttertoast: ^8.2.4
 
@@ -70,7 +71,7 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/
-    - assets/json/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -89,6 +90,12 @@ flutter:
         - asset: assets/fonts/Nunito-Bold.ttf
         - asset: assets/fonts/Nunito-Medium.ttf
         - asset: assets/fonts/Nunito-Regular.ttf
+
+    - family: Tajawal
+      fonts:
+        - asset: assets/fonts/Tajawal-Medium.ttf
+        - asset: assets/fonts/Tajawal-Regular.ttf
+        - asset: assets/fonts/Tajawal-Bold.ttf
 
   #   - family: Trajan Pro
   #     fonts:

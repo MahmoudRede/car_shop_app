@@ -6,7 +6,7 @@ ThemeData getApplicationTheme(BuildContext context) {
   return ThemeData(
       primaryColor: ColorManager.primaryColor,
       useMaterial3: true,
-      fontFamily: 'Nunito',
+      fontFamily: 'Tajawal',
       // app bar theme
       appBarTheme: AppBarTheme(
           elevation: 0.0,
