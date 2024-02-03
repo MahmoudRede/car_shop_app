@@ -5,9 +5,8 @@ import 'package:shop_car/business_logic/app_cubit/app_states.dart';
 import 'package:shop_car/constants/constants.dart';
 import 'package:shop_car/presentation/widgets/bottom_navigation_bar_widget.dart';
 import 'package:shop_car/styles/colors/color_manager.dart';
-import 'package:svg_flutter/svg_flutter.dart';
 
-class HomeLayout extends StatelessWidget {
+class HomeLayout extends StatelessWidget{
   const HomeLayout({super.key});
 
   @override
@@ -29,7 +28,6 @@ class HomeLayout extends StatelessWidget {
               ),
               child: Column(
                   children: [
-
                     SizedBox(height: MediaQuery.sizeOf(context).height*.06,),
 
                     Text(Constants.screensTitle[AppCubit.get(context).currentIndex],style: TextStyle(

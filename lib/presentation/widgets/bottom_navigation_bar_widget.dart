@@ -34,12 +34,11 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 Expanded(
                   child: ListView.separated(
                       scrollDirection: Axis.horizontal,
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context,index){
                         return GestureDetector(
                           onTap: (){
-
                             AppCubit.get(context).switchIconColor(index);
-
                           },
                           child: SvgPicture.asset(
                             Constants.bottomNavigationIcon[index],
@@ -49,7 +48,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                         );
                       },
                       separatorBuilder: (context,index){
-                        return SizedBox(width: MediaQuery.sizeOf(context).width/8.5,);
+                        return SizedBox(width: MediaQuery.sizeOf(context).width/9,);
                       },
                       itemCount: Constants.bottomNavigationIcon.length
                   ),
