@@ -38,6 +38,9 @@ class Constants{
 
   static List<bool> iconColors=List.generate(5, (index) => false);
 
+  static List<int> counter = List.generate(10, (index) => 1);
+
+
   static List<String> screensTitle=[
     'الماركات',
     'السله',
@@ -59,6 +62,19 @@ class Constants{
     'assets/icons/nissan-icon.svg',
     'assets/icons/hyundai-icon.svg',
     'assets/icons/mercedes-benz-icon.svg',
+
+  ];
+
+  static List<String> paymentImages=[
+
+    'assets/images/visa.png',
+    'assets/images/stc.png',
+    'assets/images/tamara.png',
+    'assets/images/mada.png',
+    'assets/images/apple_pay.png',
+    'assets/images/tabby.png',
+    'assets/images/bank_trans.png',
+    'assets/images/on_delivery.png',
 
   ];
 

@@ -15,7 +15,7 @@ class AppCubit extends Cubit<AppStates> {
     emit(SwitchTermsState());
   }
 
-  int currentIndex=0;
+  int currentIndex=1;
 
   void switchIconColor(int index){
 
@@ -23,6 +23,23 @@ class AppCubit extends Cubit<AppStates> {
     Constants.iconColors=List.generate(5, (index) => false);
     Constants.iconColors[index]=!Constants.iconColors[index];
     emit(SwitchTermsState());
+  }
+
+
+  void increaseCartCounter(int index){
+
+    Constants.counter[index]++;
+    emit(IncreaseCartCounterState());
+  }
+
+  void decreaseCartCounter(int index){
+    if(Constants.counter[index]>1){
+      Constants.counter[index]--;
+    }
+    else{
+      Constants.counter[index]=1;
+    }
+    emit(DecreaseCartCounterState());
   }
 
 
