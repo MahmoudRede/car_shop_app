@@ -45,177 +45,179 @@ class EditProfileScreen extends StatelessWidget {
                 SizedBox(height: MediaQuery.sizeOf(context).height*.01,),
 
                 Expanded(
-                  child: Container(
-                      margin: EdgeInsets.symmetric(
-                          horizontal: MediaQuery.sizeOf(context).height*.02
-                      ),
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xFFEBECF0),
-                            ColorManager.white,
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
+                  child: SingleChildScrollView(
+                    child: Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: MediaQuery.sizeOf(context).height*.02
                         ),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color(0xFFEBECF0),
+                              ColorManager.white,
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                          ),
                         ),
-                      ),
 
-                      child:Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        child:Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
 
-                          SizedBox(height: MediaQuery.sizeOf(context).height*.05,),
+                            SizedBox(height: MediaQuery.sizeOf(context).height*.05,),
 
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: MediaQuery.sizeOf(context).height*.05,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Image(
-                                  image: const AssetImage('assets/images/logo.png'),
-                                  height: MediaQuery.sizeOf(context).height*.1,
-                                ),
-                                SizedBox(width: MediaQuery.sizeOf(context).height*.02,),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('خالد الشهري',style: TextStyle(
-                                        color: ColorManager.textColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: MediaQuery.sizeOf(context).height*.03
-                                    ),),
-                                    Text('info@gmail.com',style: TextStyle(
-                                        color: ColorManager.grey,
-                                        fontSize: MediaQuery.sizeOf(context).height*.015
-                                    ),),
-
-                                  ],
-                                ),
-
-                              ],
-                            ),
-                          ),
-
-                          SizedBox(height: MediaQuery.sizeOf(context).height*.05,),
-
-                          // name
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: MediaQuery.sizeOf(context).height*.02,
-                            ),
-                            child: DefaultTextFormField(
-                                controller: nameController,
-                                textInputType: TextInputType.text,
-                                suffixImage: 'assets/images/pencil.png',
-                                hintText: 'خالد الشهري',
-
-                            ),
-                          ),
-                          SizedBox(height: MediaQuery.sizeOf(context).height*.02,),
-
-                          // phone
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: MediaQuery.sizeOf(context).height*.02,
-                            ),
-                            child: DefaultTextFormField(
-                                controller: phoneController,
-                                textInputType: TextInputType.text,
-                                suffixImage: 'assets/images/pencil.png',
-                                hintText: '0960000000',
-
-                            ),
-                          ),
-                          SizedBox(height: MediaQuery.sizeOf(context).height*.02,),
-
-                          // email
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: MediaQuery.sizeOf(context).height*.02,
-                            ),
-                            child: DefaultTextFormField(
-                                controller: emailController,
-                                textInputType: TextInputType.text,
-                                suffixImage: 'assets/images/pencil.png',
-                                hintText: 'info@gmail.com',
-
-                            ),
-                          ),
-                          SizedBox(height: MediaQuery.sizeOf(context).height*.02,),
-
-                          // city
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: MediaQuery.sizeOf(context).height*.02,
-                            ),
-                            child: DefaultTextFormField(
-                                controller: cityController,
-                                textInputType: TextInputType.text,
-                                suffixImage: 'assets/images/pencil.png',
-                                hintText: 'الدمام',
-
-                            ),
-                          ),
-                          SizedBox(height: MediaQuery.sizeOf(context).height*.02,),
-
-                          // password
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: MediaQuery.sizeOf(context).height*.02,
-                            ),
-                            child: DefaultTextFormField(
-                                controller: passController,
-                                textInputType: TextInputType.text,
-                                suffixImage: 'assets/images/pencil.png',
-                                hintText: 'كلمه المرور',
-                            ),
-                          ),
-
-                          SizedBox(height: MediaQuery.sizeOf(context).height*.07,),
-
-                          // save button
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: MediaQuery.sizeOf(context).height*.02,
-                            ),
-                            child: DefaultButton(
-                              onPressed: (){
-
-                              },
-                              backGroundColor: ColorManager.secondaryColor,
-                              height: MediaQuery.sizeOf(context).height*.06,
-                              width: double.infinity,
-                              content: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: MediaQuery.sizeOf(context).height*.05,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
+                                  Image(
+                                    image: const AssetImage('assets/images/logo.png'),
+                                    height: MediaQuery.sizeOf(context).height*.1,
+                                  ),
+                                  SizedBox(width: MediaQuery.sizeOf(context).height*.02,),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('خالد الشهري',style: TextStyle(
+                                          color: ColorManager.textColor,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: MediaQuery.sizeOf(context).height*.03
+                                      ),),
+                                      Text('info@gmail.com',style: TextStyle(
+                                          color: ColorManager.grey,
+                                          fontSize: MediaQuery.sizeOf(context).height*.015
+                                      ),),
 
-                                  Text('حفظ',style: TextStyle(
-                                    color: ColorManager.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: MediaQuery.sizeOf(context).height*.025,
-                                  )),
-
-                                  const Image(
-                                      image: AssetImage(
-                                        'assets/images/arrow.png',
-                                      )
+                                    ],
                                   ),
 
-
-
                                 ],
-                              ),),
-                          ),
+                              ),
+                            ),
 
-                        ],
-                      )
+                            SizedBox(height: MediaQuery.sizeOf(context).height*.05,),
+
+                            // name
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: MediaQuery.sizeOf(context).height*.02,
+                              ),
+                              child: DefaultTextFormField(
+                                  controller: nameController,
+                                  textInputType: TextInputType.text,
+                                  suffixImage: 'assets/images/pencil.png',
+                                  hintText: 'خالد الشهري',
+
+                              ),
+                            ),
+                            SizedBox(height: MediaQuery.sizeOf(context).height*.02,),
+
+                            // phone
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: MediaQuery.sizeOf(context).height*.02,
+                              ),
+                              child: DefaultTextFormField(
+                                  controller: phoneController,
+                                  textInputType: TextInputType.text,
+                                  suffixImage: 'assets/images/pencil.png',
+                                  hintText: '0960000000',
+
+                              ),
+                            ),
+                            SizedBox(height: MediaQuery.sizeOf(context).height*.02,),
+
+                            // email
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: MediaQuery.sizeOf(context).height*.02,
+                              ),
+                              child: DefaultTextFormField(
+                                  controller: emailController,
+                                  textInputType: TextInputType.text,
+                                  suffixImage: 'assets/images/pencil.png',
+                                  hintText: 'info@gmail.com',
+
+                              ),
+                            ),
+                            SizedBox(height: MediaQuery.sizeOf(context).height*.02,),
+
+                            // city
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: MediaQuery.sizeOf(context).height*.02,
+                              ),
+                              child: DefaultTextFormField(
+                                  controller: cityController,
+                                  textInputType: TextInputType.text,
+                                  suffixImage: 'assets/images/pencil.png',
+                                  hintText: 'الدمام',
+
+                              ),
+                            ),
+                            SizedBox(height: MediaQuery.sizeOf(context).height*.02,),
+
+                            // password
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: MediaQuery.sizeOf(context).height*.02,
+                              ),
+                              child: DefaultTextFormField(
+                                  controller: passController,
+                                  textInputType: TextInputType.text,
+                                  suffixImage: 'assets/images/pencil.png',
+                                  hintText: 'كلمه المرور',
+                              ),
+                            ),
+
+                            SizedBox(height: MediaQuery.sizeOf(context).height*.07,),
+
+                            // save button
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: MediaQuery.sizeOf(context).height*.02,
+                              ),
+                              child: DefaultButton(
+                                onPressed: (){
+
+                                },
+                                backGroundColor: ColorManager.secondaryColor,
+                                height: MediaQuery.sizeOf(context).height*.06,
+                                width: double.infinity,
+                                content: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+
+                                    Text('حفظ',style: TextStyle(
+                                      color: ColorManager.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: MediaQuery.sizeOf(context).height*.025,
+                                    )),
+
+                                    const Image(
+                                        image: AssetImage(
+                                          'assets/images/arrow.png',
+                                        )
+                                    ),
+
+
+
+                                  ],
+                                ),),
+                            ),
+
+                          ],
+                        )
+                    ),
                   ),
                 )
               ]
