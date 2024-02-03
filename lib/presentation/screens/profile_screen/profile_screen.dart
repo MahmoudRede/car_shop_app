@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_car/constants/constants.dart';
 import 'package:shop_car/presentation/screens/brand_screen/brand_name.dart';
+import 'package:shop_car/presentation/screens/favorite_screen/favorite_screen.dart';
 import 'package:shop_car/presentation/screens/profile_screen/edit_profile_screen.dart';
 import 'package:shop_car/styles/colors/color_manager.dart';
 import 'package:svg_flutter/svg_flutter.dart';
@@ -100,6 +101,9 @@ class ProfileScreen extends StatelessWidget {
                               onTap: (){
                                 if(index==0){
                                   Get.to(const EditProfileScreen(),transition: Transition.fadeIn);
+                                }
+                                if(index==3){
+                                  Get.to(const FavoriteScreen(),transition: Transition.fadeIn);
                                 }
                               },
                               child: Column(
