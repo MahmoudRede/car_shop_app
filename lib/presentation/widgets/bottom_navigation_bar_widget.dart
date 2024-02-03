@@ -16,6 +16,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
 
         },
         builder: (context,state){
+
           return Container(
             margin: EdgeInsets.symmetric(
                 horizontal: MediaQuery.sizeOf(context).height*.02

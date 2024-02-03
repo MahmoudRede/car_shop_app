@@ -62,8 +62,8 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
               border: InputBorder.none,
               hintText: widget.hintText,
               labelStyle:Theme.of(context).textTheme.headlineSmall!.copyWith(
-                fontSize: 16.0,
-                color: ColorManager.black,
+                fontSize: 15.0,
+                color: ColorManager.textColor,
               ),
               hintStyle:Theme.of(context).textTheme.headlineSmall!.copyWith(
                 fontSize: 16.0,

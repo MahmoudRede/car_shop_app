@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_car/presentation/screens/brand_screen/brand_name.dart';
 import 'package:shop_car/presentation/screens/brand_screen/brand_screen.dart';
 import 'package:shop_car/presentation/screens/cart_screen/cart_screen.dart';
 import 'package:shop_car/presentation/screens/file_screen/file_screen.dart';
@@ -27,7 +28,6 @@ class Constants{
     'assets/icons/user_icon.svg',
   ];
 
-
   static List<Widget> screens=[
     const BrandScreen(),
     const CartScreen(),
@@ -36,7 +36,13 @@ class Constants{
     const ProfileScreen(),
   ];
 
-  static List<bool> iconColors=List.generate(5, (index) => false);
+  static List<bool> iconColors=[
+    false,
+    false,
+    true,
+    false,
+    false,
+  ];
 
   static List<int> counter = List.generate(10, (index) => 1);
 
@@ -46,23 +52,28 @@ class Constants{
     'السله',
     'السله',
     'السله',
-    'الماركات',
+    'البروفيل',
   ];
 
   static List<String> brandImages=[
-    'assets/icons/kia-icon.svg',
-    'assets/icons/ford-icon.svg',
-    'assets/icons/toyota-icon.svg',
-    'assets/icons/nissan-icon.svg',
-    'assets/icons/hyundai-icon.svg',
-    'assets/icons/mercedes-benz-icon.svg',
-    'assets/icons/kia-icon.svg',
-    'assets/icons/ford-icon.svg',
-    'assets/icons/toyota-icon.svg',
-    'assets/icons/nissan-icon.svg',
-    'assets/icons/hyundai-icon.svg',
-    'assets/icons/mercedes-benz-icon.svg',
-
+    'assets/images/kia-icon.png',
+    'assets/images/ford-icon.png',
+    'assets/images/toyota-icon.png',
+    'assets/images/nissan-icon.png',
+    'assets/images/hyundai-icon.png',
+    'assets/images/mercedes-icon.png',
+    'assets/images/kia-icon.png',
+    'assets/images/ford-icon.png',
+    'assets/images/toyota-icon.png',
+    'assets/images/nissan-icon.png',
+    'assets/images/hyundai-icon.png',
+    'assets/images/mercedes-icon.png',
+    'assets/images/kia-icon.png',
+    'assets/images/ford-icon.png',
+    'assets/images/toyota-icon.png',
+    'assets/images/nissan-icon.png',
+    'assets/images/hyundai-icon.png',
+    'assets/images/mercedes-icon.png',
   ];
 
   static List<String> paymentImages=[
@@ -77,6 +88,45 @@ class Constants{
     'assets/images/on_delivery.png',
 
   ];
+
+  static List<String> typeImages=[
+    'assets/images/store1.png',
+    'assets/images/store2.png',
+    'assets/images/store3.png',
+    'assets/images/store4.png',
+    'assets/images/store5.png',
+    'assets/images/store6.png',
+  ];
+
+  static List<String> typeNamed=[
+    'صينى',
+    'كوري',
+    'تيواني',
+    'يباني',
+    'تايلاندي',
+    'ماليزي',
+  ];
+
+  static List<String> profileImages=[
+    'assets/images/user_icon.png',
+    'assets/images/notification.png',
+    'assets/images/translate.png',
+    'assets/images/heart.png',
+    'assets/images/call.png',
+    'assets/images/share.png',
+    'assets/images/arrow-back.png',
+  ];
+
+  static List<String> profileTitles=[
+    'بياناتي',
+    'الاشعارات',
+    'اللغة',
+    'المفضلة',
+    'اتصل بنا',
+    'شارك التطبيق',
+    'تسجيل الخروج',
+  ];
+
 
 
 }
