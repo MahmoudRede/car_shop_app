@@ -45,27 +45,27 @@ class EditProfileScreen extends StatelessWidget {
                 SizedBox(height: MediaQuery.sizeOf(context).height*.01,),
 
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Container(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: MediaQuery.sizeOf(context).height*.02
+                  child: Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.sizeOf(context).height*.02
+                      ),
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0xFFEBECF0),
+                            ColorManager.white,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
                         ),
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0xFFEBECF0),
-                              ColorManager.white,
-                            ],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                          ),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
                         ),
+                      ),
 
-                        child:Column(
+                      child: SingleChildScrollView(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
 
@@ -216,8 +216,8 @@ class EditProfileScreen extends StatelessWidget {
                             ),
 
                           ],
-                        )
-                    ),
+                        ),
+                      )
                   ),
                 )
               ]
