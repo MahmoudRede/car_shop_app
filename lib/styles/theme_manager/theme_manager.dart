@@ -23,10 +23,10 @@ ThemeData getApplicationTheme(BuildContext context) {
             statusBarColor: ColorManager.primaryColor,
             statusBarIconBrightness: Brightness.light,
           )),
-//text theme
+      //text theme
       textTheme: const TextTheme(
         headlineSmall: TextStyle(
-            fontSize: 16, fontFamily: 'Nunito', color: ColorManager.black),
+            fontSize: 13, fontFamily: 'Nunito', color: ColorManager.black),
         headlineMedium: TextStyle(
             fontSize: 20, fontFamily: 'Nunito', color: ColorManager.black),
         headlineLarge: TextStyle(

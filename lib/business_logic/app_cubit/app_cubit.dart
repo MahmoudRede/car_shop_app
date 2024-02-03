@@ -15,7 +15,7 @@ class AppCubit extends Cubit<AppStates> {
     emit(SwitchTermsState());
   }
 
-  int currentIndex=1;
+  int currentIndex=2;
 
   void switchIconColor(int index){
 

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shop_car/constants/constants.dart';
+import 'package:shop_car/presentation/screens/brand_screen/brand_name.dart';
 import 'package:shop_car/styles/colors/color_manager.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
@@ -36,31 +38,41 @@ class BrandScreen extends StatelessWidget {
             childAspectRatio: 1/.7,
             mainAxisSpacing: 20,
             crossAxisSpacing: 0,
-            children: List.generate(Constants.brandImages.length, (index) => Container(
-              margin: const EdgeInsets.symmetric(
-                horizontal: 15
-              ),
-              child: Material(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+            children: List.generate(Constants.brandImages.length, (index) => GestureDetector(
+              onTap: (){
+
+                Get.to(const BrandNameScreen(),transition: Transition.fadeIn);
+
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 15
                 ),
-                elevation: 10,
-                child: Container(
-                  decoration: BoxDecoration(
+                child: Material(
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
-                    color: ColorManager.white,
                   ),
-                  margin: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.sizeOf(context).height*.02
-                  ),
-                  child:  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                          Constants.brandImages[index],
-                      ),
-                    ]
+                  elevation: 10,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: ColorManager.white,
+                    ),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.sizeOf(context).height*.02
+                    ),
+                    child:  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage(
+                            Constants.brandImages[index],
+                          ),
+                        ),
+
+                      ]
+                    ),
                   ),
                 ),
               ),
