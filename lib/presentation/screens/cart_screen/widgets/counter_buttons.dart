@@ -32,14 +32,14 @@ class CounterButtons extends StatelessWidget {
               cubit.decreaseCartCounter( index );
             },
             child: Container(
-              height: MediaQuery.sizeOf(context).height * .04,
-              width: MediaQuery.sizeOf(context).width * .08,
+              height: MediaQuery.sizeOf(context).height * .03,
+              width: MediaQuery.sizeOf(context).width * .07,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),bottomLeft: Radius.circular(20)),
                 color: Colors.blue.withOpacity(.1)
               ),
               child: Icon(Icons.remove,
-                size: MediaQuery.sizeOf(context).height * .025,
+                size: MediaQuery.sizeOf(context).height * .022,
                 color: ColorManager.black.withOpacity(.7),
               ),
             ),
@@ -50,14 +50,14 @@ class CounterButtons extends StatelessWidget {
               cubit.increaseCartCounter(index );
             } ,
             child: Container(
-              height: MediaQuery.sizeOf(context).height * .04,
-              width: MediaQuery.sizeOf(context).width * .08,
+              height: MediaQuery.sizeOf(context).height * .03,
+              width: MediaQuery.sizeOf(context).width * .07,
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
                   color: Colors.blue.withOpacity(.1)
               ),
               child: Icon(Icons.add,
-              size: MediaQuery.sizeOf(context).height * .025,
+              size: MediaQuery.sizeOf(context).height * .022,
               color: ColorManager.black.withOpacity(.7),
               ),
 
