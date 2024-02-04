@@ -14,6 +14,7 @@ class DefaultTextFormField extends StatefulWidget {
   Color? hintColor;
   TextInputType textInputType;
   bool isEnabled;
+  bool isImage;
   TextEditingController controller = TextEditingController();
 
   DefaultTextFormField(
@@ -24,6 +25,7 @@ class DefaultTextFormField extends StatefulWidget {
         this.isEnabled = true,
         required this.textInputType,
         this.labelText='',
+        this.isImage = false,
         this.value = '',
         this.prefixIcon,
         this.suffixIcon,
@@ -73,6 +75,8 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
                 fontSize: 13.0,
                 color: ColorManager.red,
               ),
+
+
               suffixIcon: Image(
                 height: MediaQuery.sizeOf(context).height*.01,
                 image: AssetImage(widget.suffixImage),

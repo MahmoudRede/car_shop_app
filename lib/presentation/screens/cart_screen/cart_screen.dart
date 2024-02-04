@@ -36,6 +36,9 @@ class CartScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListView.separated(
+                      padding: EdgeInsets.symmetric(
+                        vertical: MediaQuery.sizeOf(context).height * .02,
+                      ),
                       itemBuilder: (context, index) {
                         return CartItem(index: index,);
                       },
