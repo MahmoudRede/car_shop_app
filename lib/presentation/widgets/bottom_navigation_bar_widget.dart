@@ -17,45 +17,51 @@ class BottomNavigationBarWidget extends StatelessWidget {
         },
         builder: (context,state){
 
-          return Container(
-            margin: EdgeInsets.symmetric(
+          return Padding(
+            padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.sizeOf(context).height*.02
             ),
-            padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.sizeOf(context).height*.05
-            ),
-            width: double.infinity,
-            height: MediaQuery.sizeOf(context).height*.08,
-            decoration: BoxDecoration(
-                color: ColorManager.white,
-                borderRadius: BorderRadius.circular(50)
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context,index){
-                        return GestureDetector(
-                          onTap: (){
-                            AppCubit.get(context).switchIconColor(index);
-                          },
-                          child: SvgPicture.asset(
-                            Constants.bottomNavigationIcon[index],
-                            height: MediaQuery.sizeOf(context).height*.025,
-                            color: Constants.iconColors[index] ==false?  ColorManager.grey:ColorManager.secondaryColor,
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context,index){
-                        return SizedBox(width: MediaQuery.sizeOf(context).width/9,);
-                      },
-                      itemCount: Constants.bottomNavigationIcon.length
-                  ),
+            child: Material(
+              elevation: 15,
+              borderRadius: BorderRadius.circular(50),
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.sizeOf(context).height*.05
                 ),
+                width: double.infinity,
+                height: MediaQuery.sizeOf(context).height*.08,
+                decoration: BoxDecoration(
+                    color: ColorManager.white,
+                    borderRadius: BorderRadius.circular(50)
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context,index){
+                            return GestureDetector(
+                              onTap: (){
+                                AppCubit.get(context).switchIconColor(index);
+                              },
+                              child: SvgPicture.asset(
+                                Constants.bottomNavigationIcon[index],
+                                height: MediaQuery.sizeOf(context).height*.025,
+                                color: Constants.iconColors[index] ==false?  ColorManager.grey:ColorManager.secondaryColor,
+                              ),
+                            );
+                          },
+                          separatorBuilder: (context,index){
+                            return SizedBox(width: MediaQuery.sizeOf(context).width/9,);
+                          },
+                          itemCount: Constants.bottomNavigationIcon.length
+                      ),
+                    ),
 
-              ],
+                  ],
+                ),
+              ),
             ),
           );
         },
