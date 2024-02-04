@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shop_car/presentation/screens/brand_screen/brand_name.dart';
 import 'package:shop_car/presentation/screens/brand_screen/brand_screen.dart';
 import 'package:shop_car/presentation/screens/cart_screen/cart_screen.dart';
 import 'package:shop_car/presentation/screens/file_screen/file_screen.dart';
@@ -126,6 +125,14 @@ class Constants{
     'شارك التطبيق',
     'تسجيل الخروج',
   ];
+
+  static List<String> notificationIons=[
+     'assets/icons/notification_order.svg',
+     'assets/icons/notification_location.svg',
+     'assets/icons/notification_discount.svg',
+  ];
+
+  static List<String> notificationContent=[];
 
 
 
