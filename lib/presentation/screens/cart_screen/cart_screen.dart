@@ -64,15 +64,14 @@ class CartScreen extends StatelessWidget {
                         const Image(
                             image: AssetImage(
                               'assets/images/arrow.png',
-                            )
+                            ),
                         ),
 
                         Text('تأكيد الدفع',style: TextStyle(
-                          color: ColorManager.textColor,
+                          color: ColorManager.white,
                           fontWeight: FontWeight.bold,
                           fontSize: MediaQuery.sizeOf(context).height*.025,
                         )),
-                        Container(),
 
                       ],
                     ),),

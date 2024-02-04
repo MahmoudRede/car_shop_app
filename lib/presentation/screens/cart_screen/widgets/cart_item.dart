@@ -4,7 +4,6 @@ import 'package:shop_car/business_logic/app_cubit/app_cubit.dart';
 import 'package:shop_car/business_logic/app_cubit/app_states.dart';
 import 'package:shop_car/constants/constants.dart';
 import 'package:shop_car/presentation/screens/cart_screen/widgets/cancel_button.dart';
-import 'package:shop_car/presentation/screens/cart_screen/widgets/counter_buttons.dart';
 import '../../../../styles/colors/color_manager.dart';
 
 class CartItem extends StatelessWidget {
@@ -30,22 +29,25 @@ class CartItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                flex: 2,
+                flex: 3,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     // Row contains the cancel button and the order number
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        CancelButton(onTap: () {}),
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).height * .01,
-                        ),
-                        const Text("65444"),
-                        const Text(":رقم الطلب"),
-                      ],
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          CancelButton(onTap: () {}),
+                          const Row(
+                            children: [
+                              Text("65444"),
+                              Text(":رقم الطلب"),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: MediaQuery.sizeOf(context).height * .01,
@@ -145,7 +147,7 @@ class CartItem extends StatelessWidget {
                                           MediaQuery.sizeOf(context).height *
                                               .04,
                                       width: MediaQuery.sizeOf(context).width *
-                                          .08,
+                                          .065,
                                       decoration: BoxDecoration(
                                           borderRadius: const BorderRadius.only(
                                               topLeft: Radius.circular(20),
@@ -177,7 +179,7 @@ class CartItem extends StatelessWidget {
                                           MediaQuery.sizeOf(context).height *
                                               .04,
                                       width: MediaQuery.sizeOf(context).width *
-                                          .08,
+                                          .065,
                                       decoration: BoxDecoration(
                                           borderRadius: const BorderRadius.only(
                                               topRight: Radius.circular(20),
