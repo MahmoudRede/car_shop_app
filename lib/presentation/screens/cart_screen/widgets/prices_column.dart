@@ -12,7 +12,7 @@ class PricesColumn extends StatelessWidget {
         children: [
           //  delivery price
           Container(
-            height: MediaQuery.sizeOf(context).height * .07,
+            height: MediaQuery.sizeOf(context).height * .08,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
@@ -66,7 +66,7 @@ class PricesColumn extends StatelessWidget {
           ),
           // addition price
           Container(
-            height: MediaQuery.sizeOf(context).height * .07,
+            height: MediaQuery.sizeOf(context).height * .08,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
@@ -120,7 +120,7 @@ class PricesColumn extends StatelessWidget {
           ),
           // total price
           Container(
-            height: MediaQuery.sizeOf(context).height * .07,
+            height: MediaQuery.sizeOf(context).height * .08,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
