@@ -132,6 +132,15 @@ class AppCubit extends Cubit<AppStates> {
       city: city,
     );
 
+
+  bool showItemMoreDetails=false;
+  void switchShowItemMoreDetails(bool value){
+    showItemMoreDetails= value;
+    emit(SwitchShowItemMoreDetailsState());
+  }
+
+
+
     FirebaseFirestore.instance
         .collection('Users')
         .doc(userModel.uId)
@@ -174,5 +183,6 @@ class AppCubit extends Cubit<AppStates> {
     var myUser = user.data();
     return myUser;
   }
+
 
 }

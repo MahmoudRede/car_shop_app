@@ -26,3 +26,5 @@ class SaveUserErrorState extends AppStates{}
 class SwitchTermsState extends AppStates{}
 class IncreaseCartCounterState extends AppStates{}
 class DecreaseCartCounterState extends AppStates{}
+
+class SwitchShowItemMoreDetailsState extends AppStates{}

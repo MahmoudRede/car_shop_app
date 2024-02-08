@@ -138,5 +138,32 @@ class Constants{
   static List<String> notificationContent=[];
 
 
+  static List<String> brandsImagesSvg = [
+    "assets/icons/kia-icon.svg",
+    "assets/icons/toyota-icon.svg",
+    "assets/icons/nissan-icon.svg",
+    "assets/icons/hyundai-icon.svg",
+  ];
+
+
+  static List<String> homeTabViewTitles=[
+    'كامري',
+    'كروك',
+    'كورولا',
+    'روميون',
+    'فولاتشنر',
+  ];
+
+  static List<String> itemDetailsCarsImage = [
+    'assets/images/car.png',
+    'assets/images/carImage.png',
+  ];
+  static List<String> itemDetailsItemsImage = [
+    'assets/images/product_image.png',
+    'assets/images/product_image.png',
+    'assets/images/product_image.png'
+  ];
+
+
 
 }

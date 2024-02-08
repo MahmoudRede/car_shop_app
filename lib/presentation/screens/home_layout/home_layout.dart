@@ -26,25 +26,35 @@ class HomeLayout extends StatelessWidget{
                     image:  AssetImage('assets/images/splash_screen.png'),
                   )
               ),
-              child: Column(
-                  children: [
-                    SizedBox(height: MediaQuery.sizeOf(context).height*.06,),
+              child: Stack(
+                children: [
+                  Column(
+                      children: [
+                        SizedBox(height: MediaQuery.sizeOf(context).height*.06,),
 
-                    Text(Constants.screensTitle[AppCubit.get(context).currentIndex],style: TextStyle(
-                      color: ColorManager.white,
-                      fontSize: MediaQuery.sizeOf(context).height*.027,
-                      fontWeight: FontWeight.bold
-                    ),),
+                        Visibility(
+                          visible: AppCubit.get(context).currentIndex == 2 ? false : true,
+                          child: Text(Constants.screensTitle[AppCubit.get(context).currentIndex],style: TextStyle(
+                            color: ColorManager.white,
+                            fontSize: MediaQuery.sizeOf(context).height*.027,
+                            fontWeight: FontWeight.bold
+                          ),),
+                        ),
 
-                    Constants.screens[AppCubit.get(context).currentIndex],
+                        Constants.screens[AppCubit.get(context).currentIndex],
 
-                    const Spacer(),
+                      ]
+                  ),
 
-                    const BottomNavigationBarWidget(),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const BottomNavigationBarWidget(),
 
-                    SizedBox(height:MediaQuery.sizeOf(context).height*.02),
-
-                  ]
+                      SizedBox(height:MediaQuery.sizeOf(context).height*.02),
+                    ],
+                  ),
+                ],
               ),
             ),
           );
