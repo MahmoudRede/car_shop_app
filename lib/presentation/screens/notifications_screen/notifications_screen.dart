@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:shop_car/constants/constants.dart';
 import 'package:shop_car/presentation/screens/notifications_screen/widgets/notification_item.dart';
 import 'package:svg_flutter/svg.dart';
-
 import '../../../styles/colors/color_manager.dart';
 
 class NotificationsScreen extends StatelessWidget {
@@ -28,7 +29,9 @@ class NotificationsScreen extends StatelessWidget {
               fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.back(closeOverlays: true);
+          },
           icon: const Icon(
             Icons.arrow_back_ios_new,
           ),
