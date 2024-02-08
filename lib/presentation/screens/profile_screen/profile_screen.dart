@@ -2,12 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop_car/constants/constants.dart';
-import 'package:shop_car/presentation/screens/brand_screen/brand_name.dart';
-import 'package:shop_car/presentation/screens/favorite_screen/favorite_screen.dart';
+ import 'package:shop_car/presentation/screens/favorite_screen/favorite_screen.dart';
 import 'package:shop_car/presentation/screens/notifications_screen/notifications_screen.dart';
 import 'package:shop_car/presentation/screens/profile_screen/edit_profile_screen.dart';
 import 'package:shop_car/styles/colors/color_manager.dart';
-import 'package:svg_flutter/svg_flutter.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
