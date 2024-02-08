@@ -151,6 +151,16 @@ class Constants{
     'فولاتشنر',
   ];
 
+  static List<String> itemDetailsCarsImage = [
+    'assets/images/car.png',
+    'assets/images/carImage.png',
+  ];
+  static List<String> itemDetailsItemsImage = [
+    'assets/images/product_image.png',
+    'assets/images/product_image.png',
+    'assets/images/product_image.png'
+  ];
+
 
 
 }

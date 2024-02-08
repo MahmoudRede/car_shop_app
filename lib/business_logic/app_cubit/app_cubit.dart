@@ -43,5 +43,12 @@ class AppCubit extends Cubit<AppStates> {
   }
 
 
+  bool showItemMoreDetails=false;
+  void switchShowItemMoreDetails(bool value){
+    showItemMoreDetails= value;
+    emit(SwitchShowItemMoreDetailsState());
+  }
+
+
 
 }

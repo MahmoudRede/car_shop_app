@@ -8,6 +8,7 @@ class ColorManager {
   static const Color brown = Color(0xFFE6DCD2);
   static const Color brownDark = Color(0xFF604E40);
   static const Color darkWhite = Color(0xFFFAF6F3);
+  static const Color darkWhite2 = Color(0xFFfdfdfd);
   static const Color black = Colors.black;
   static const Color white = Colors.white;
   static const Color red = Colors.red;
