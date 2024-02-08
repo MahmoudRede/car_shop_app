@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "201102952033",
+    "project_id": "cayon-company",
+    "storage_bucket": "cayon-company.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201102952033:android:0f7c1f04e1837694bfcc20",
+        "android_client_info": {
+          "package_name": "com.example.shop_car"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDE4wc9AFccr1gOHqhwQZa8w7rzeoXm3m0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
