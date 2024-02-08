@@ -5,7 +5,10 @@ import 'package:shop_car/presentation/screens/file_screen/file_screen.dart';
 import 'package:shop_car/presentation/screens/home_screen/home_screen.dart';
 import 'package:shop_car/presentation/screens/profile_screen/profile_screen.dart';
 
+String? uId;
+
 class Constants{
+
 
   static List<String> languages = [
     'العربية',
