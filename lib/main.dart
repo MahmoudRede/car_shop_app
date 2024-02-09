@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:shop_car/business_logic/app_cubit/app_cubit.dart';
 import 'package:shop_car/business_logic/app_cubit/app_states.dart';
+import 'package:shop_car/presentation/screens/files_screen/files_screen.dart';
 import 'package:shop_car/presentation/screens/home_layout/home_layout.dart';
 import 'package:shop_car/presentation/screens/login_screen/login_screen.dart';
 import 'package:shop_car/presentation/screens/notifications_screen/notifications_screen.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
               return GetMaterialApp(
                 debugShowCheckedModeBanner: false,
                 theme: getApplicationTheme(context),
-                home: const RegisterScreen(),
+                home: const FilesScreen(),
               );
           },
       ),

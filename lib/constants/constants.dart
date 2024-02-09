@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_car/presentation/screens/brand_screen/brand_screen.dart';
 import 'package:shop_car/presentation/screens/cart_screen/cart_screen.dart';
-import 'package:shop_car/presentation/screens/file_screen/file_screen.dart';
+import 'package:shop_car/presentation/screens/files_screen/files_screen.dart';
 import 'package:shop_car/presentation/screens/home_screen/home_screen.dart';
 import 'package:shop_car/presentation/screens/profile_screen/profile_screen.dart';
 
@@ -34,7 +34,7 @@ class Constants{
     const BrandScreen(),
     const CartScreen(),
     const HomeScreen(),
-    const FileScreen(),
+    const FilesScreen(),
     const ProfileScreen(),
   ];
 

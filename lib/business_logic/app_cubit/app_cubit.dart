@@ -44,6 +44,12 @@ class AppCubit extends Cubit<AppStates> {
     emit(DecreaseCartCounterState());
   }
 
+  bool showItemMoreDetails=false;
+  void switchShowItemMoreDetails(bool value){
+    showItemMoreDetails= value;
+    emit(SwitchShowItemMoreDetailsState());
+  }
+
   UserModel? userModel;
 
 //   Sign up with firebase
