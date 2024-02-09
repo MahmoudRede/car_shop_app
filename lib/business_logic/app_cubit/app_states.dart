@@ -16,6 +16,8 @@ class GetUserLoadingState extends AppStates{}
 class GetUserSuccessState extends AppStates{}
 class GetUserErrorState extends AppStates{}
 
+class SwitchShowItemMoreDetailsState extends AppStates{}
+
 class SaveUserLoadingState extends AppStates{}
 class SaveUserSuccessState extends AppStates{}
 class SaveUserErrorState extends AppStates{}
@@ -26,5 +28,3 @@ class SaveUserErrorState extends AppStates{}
 class SwitchTermsState extends AppStates{}
 class IncreaseCartCounterState extends AppStates{}
 class DecreaseCartCounterState extends AppStates{}
-
-class SwitchShowItemMoreDetailsState extends AppStates{}
