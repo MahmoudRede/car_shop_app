@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_car/business_logic/app_cubit/app_cubit.dart';
 import 'package:shop_car/business_logic/app_cubit/app_states.dart';
-import 'package:shop_car/presentation/screens/start_screen/start_screen.dart';
-import 'package:shop_car/styles/colors/color_manager.dart';
+
+import '../../../core/local/cash_helper.dart';
+import '../home_layout/home_layout.dart';
+import '../login_screen/login_screen.dart';
 
 
 
@@ -19,12 +21,21 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
+    Future.delayed(const Duration(seconds: 5),()async{
 
-    Future.delayed(const Duration(seconds: 3),()async{
+      AppCubit.get(context).getFavoriteProductFromApi().then((value) {
+        CashHelper.getData(key: 'isUid') == null
+            ? Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
+                (Route<dynamic> route) => false)
+            : {
+           Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => const HomeLayout()),
+                  (Route<dynamic> route) => false)
+        };
+      });
 
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-        const StartScreen()
-        ), (Route<dynamic> route) => false);
 
     });
 
@@ -34,9 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit,AppStates>(
-      listener: (context,state){
-
-      },
+      listener: (context,state){},
       builder: (context,state){
         return Scaffold(
           body: Container(

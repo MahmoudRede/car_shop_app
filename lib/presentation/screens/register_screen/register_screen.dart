@@ -14,7 +14,7 @@ class RegisterScreen extends StatelessWidget {
   static var phoneController = TextEditingController();
   static var townController = TextEditingController();
   static var passController = TextEditingController();
-  static var formKey = GlobalKey<FormState>();
+  static  GlobalKey<FormState> formKey = GlobalKey();
 
   const RegisterScreen({super.key});
 

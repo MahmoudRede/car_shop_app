@@ -7,7 +7,14 @@ import 'package:shop_car/styles/colors/color_manager.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ItemDetailsScreen extends StatelessWidget {
-  const ItemDetailsScreen({super.key});
+  final int index;
+  String productName;
+  String productType;
+  String brandName;
+  String subBrandName;
+  String startYear;
+  String endYear;
+    ItemDetailsScreen({ required this.productName, required this.productType, required this.index, required this.brandName, required this.subBrandName, required this.startYear, required this.endYear, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -382,7 +389,7 @@ class ItemDetailsScreen extends StatelessWidget {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      'سيارة تويوتا',
+                                                      brandName,
                                                       style: TextStyle(
                                                           fontSize: MediaQuery.of(context).size.height*0.02,
                                                           fontWeight: FontWeight.w600
@@ -390,7 +397,7 @@ class ItemDetailsScreen extends StatelessWidget {
                                                     ),
                                                     SizedBox(width: MediaQuery.of(context).size.height*0.01,),
                                                     Text(
-                                                      'كامري',
+                                                      subBrandName,
                                                       style: TextStyle(
                                                           fontSize: MediaQuery.of(context).size.height*0.02,
                                                           fontWeight: FontWeight.w400
@@ -398,7 +405,7 @@ class ItemDetailsScreen extends StatelessWidget {
                                                     ),
                                                     SizedBox(width: MediaQuery.of(context).size.height*0.01,),
                                                     Text(
-                                                      '2017',
+                                                      startYear,
                                                       style: TextStyle(
                                                           fontSize: MediaQuery.of(context).size.height*0.02,
                                                           fontWeight: FontWeight.w400
@@ -436,15 +443,7 @@ class ItemDetailsScreen extends StatelessWidget {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      'القطعة : 1',
-                                                      style: TextStyle(
-                                                          fontSize: MediaQuery.of(context).size.height*0.02,
-                                                          fontWeight: FontWeight.w600
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: MediaQuery.of(context).size.height*0.01,),
-                                                    Text(
-                                                      'موتور كامل',
+                                                      productType,
                                                       style: TextStyle(
                                                           fontSize: MediaQuery.of(context).size.height*0.02,
                                                           fontWeight: FontWeight.w400

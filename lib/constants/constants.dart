@@ -51,32 +51,160 @@ class Constants{
 
   static List<String> screensTitle=[
     'الماركات',
+    '',
     'السله',
-    'السله',
-    'السله',
+    'طلباتي',
     'البروفيل',
   ];
 
   static List<String> brandImages=[
-    'assets/images/kia-icon.png',
-    'assets/images/ford-icon.png',
     'assets/images/toyota-icon.png',
     'assets/images/nissan-icon.png',
     'assets/images/hyundai-icon.png',
-    'assets/images/mercedes-icon.png',
     'assets/images/kia-icon.png',
     'assets/images/ford-icon.png',
-    'assets/images/toyota-icon.png',
-    'assets/images/nissan-icon.png',
-    'assets/images/hyundai-icon.png',
     'assets/images/mercedes-icon.png',
-    'assets/images/kia-icon.png',
-    'assets/images/ford-icon.png',
-    'assets/images/toyota-icon.png',
-    'assets/images/nissan-icon.png',
-    'assets/images/hyundai-icon.png',
-    'assets/images/mercedes-icon.png',
+
+  ];  static List<String> homeBrandImages=[
+    'assets/icons/toyota-icon.svg',
+    'assets/icons/nissan-icon.svg',
+    'assets/icons/hyundai-icon.svg',
+    'assets/icons/kia-icon.svg',
+    'assets/icons/mercedes-benz-icon.svg',
+
   ];
+
+  static List<String> homeBrandName=[
+    'تويوتا',
+    'نيسان',
+    'هيونداي',
+    'كيا',
+     'ميرسيس',
+
+  ];  static List<String> brandName=[
+    'تويوتا',
+    'نيسان',
+    'هيونداي',
+    'كيا',
+    'فورد',
+    'ميرسيس',
+
+  ];
+  static List<String> toyotaSubBrandImages=[
+    'assets/images/crock.png',
+    'assets/images/camri.png',
+    'assets/images/romyon.png',
+    'assets/images/corolla.png',
+    'assets/images/yaris.png',
+    'assets/images/folanshiner.png',
+  ];
+  static List<String> toyotaSubBrandName=[
+    'كروك',
+    'كامري',
+    'روميون',
+    'كورولا',
+    'يارس',
+    'فولاتشنر',
+
+  ];
+
+  static List<String> nissanSubBrandImages=[
+    'assets/images/crock.png',
+    'assets/images/camri.png',
+    'assets/images/romyon.png',
+    'assets/images/corolla.png',
+    'assets/images/yaris.png',
+    'assets/images/folanshiner.png',
+    'assets/images/folanshiner.png',
+  ];
+
+  static List<String> nissanSubBrandName = [
+    'التيما',
+    'فيرسا',
+    'روج',
+    'نافارا',
+    'سني هندي',
+    'جوك',
+    'سينترا',
+  ];
+
+ static List<String> timaStart = [
+    '2013',
+    '2013',
+    '2019',
+    '2019',
+  ];
+
+ static List<String> timaEnd = [
+    '2018',
+    '2015',
+    '2021',
+    '2022',
+  ];
+
+ static List<String> versaStart = [
+    '2008',
+    '2012',
+    '2020',
+  ];
+
+ static List<String> versaEnd = [
+    '2011',
+    '2019',
+    '2021',
+  ];
+
+ static List<String> rogStart = [
+    '2017',
+    '2021',
+  ];
+
+ static List<String> rogEnd = [
+    '2020',
+    '2023',
+  ];
+
+ static List<String> nafaraStart = [
+    '2005',
+    '2016',
+  ];
+
+ static List<String> nafaraEnd = [
+    '2015',
+    '2020',
+  ];
+
+static  List<String> sunnyStart = [
+    '2013',
+  ];
+
+ static List<String> sunnyEnd = [
+    '2021',
+  ];
+
+ static List<String> gocStart = [
+    '2011',
+    '2013',
+    '2016',
+  ];
+
+ static List<String> gocEnd = [
+    '2014',
+    '2016',
+    '2021',
+  ];
+
+ static List<String> syntraStart = [
+    '2013',
+    '2020',
+  ];
+
+ static List<String> syntraEnd = [
+    '2019',
+    '2021',
+  ];
+
+
 
   static List<String> paymentImages=[
 
@@ -139,9 +267,9 @@ class Constants{
 
 
   static List<String> brandsImagesSvg = [
-    "assets/icons/kia-icon.svg",
-    "assets/icons/toyota-icon.svg",
     "assets/icons/nissan-icon.svg",
+    "assets/icons/toyota-icon.svg",
+    "assets/icons/kia-icon.svg",
     "assets/icons/hyundai-icon.svg",
   ];
 

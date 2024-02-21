@@ -1,10 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_car/business_logic/app_cubit/app_cubit.dart';
-import 'package:shop_car/business_logic/app_cubit/app_states.dart';
-import 'package:shop_car/constants/constants.dart';
-import 'package:shop_car/presentation/screens/cart_screen/widgets/cancel_button.dart';
-import 'package:shop_car/presentation/screens/cart_screen/widgets/counter_buttons.dart';
 import '../../../../styles/colors/color_manager.dart';
 
 class FavoriteItem extends StatelessWidget {
