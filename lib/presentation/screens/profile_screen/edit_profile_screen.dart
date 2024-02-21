@@ -1,13 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:shop_car/business_logic/app_cubit/app_cubit.dart';
-import 'package:shop_car/constants/constants.dart';
-import 'package:shop_car/presentation/screens/brand_screen/brand_name.dart';
 import 'package:shop_car/presentation/widgets/default_button.dart';
 import 'package:shop_car/presentation/widgets/default_text_form_field.dart';
 import 'package:shop_car/styles/colors/color_manager.dart';
-import 'package:svg_flutter/svg_flutter.dart';
 
 class EditProfileScreen extends StatelessWidget {
   static var nameController=TextEditingController();

@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:shop_car/business_logic/app_cubit/app_cubit.dart';
+import 'package:shop_car/business_logic/app_cubit/app_states.dart';
 import 'package:shop_car/constants/constants.dart';
+import 'package:shop_car/presentation/screens/brand_screen/brand_name.dart';
 import 'package:shop_car/presentation/screens/home_screen/widget/home_item.dart';
+import 'package:shop_car/presentation/screens/notifications_screen/notifications_screen.dart';
+import 'package:shop_car/presentation/screens/search_screen/search_screen.dart';
 import 'package:shop_car/styles/colors/color_manager.dart';
 import 'package:svg_flutter/svg.dart';
 
@@ -9,6 +17,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<AppCubit, AppStates>(
+  listener: (context, state) {},
+  builder: (context, state) {
+    var cubit=AppCubit.get(context);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Expanded(
@@ -18,23 +30,32 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SizedBox(
-                    height: MediaQuery.sizeOf(context).height*.025,
-                    width: MediaQuery.sizeOf(context).height*.025,
+                  InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const NotificationsScreen()));
+                    },
+                    child: SizedBox(
+                      height: MediaQuery.sizeOf(context).height*.025,
+                      width: MediaQuery.sizeOf(context).height*.025,
 
-                    child: SvgPicture.asset(
-                      'assets/icons/notification.svg',
+                      child: SvgPicture.asset(
+                        'assets/icons/notification.svg',
+                      ),
                     ),
                   ),
 
                   SizedBox(width: MediaQuery.sizeOf(context).height*.03,),
 
-                  SizedBox(
-                    height: MediaQuery.sizeOf(context).height*.025,
-                    width: MediaQuery.sizeOf(context).height*.025,
-
-                    child: SvgPicture.asset(
-                      'assets/icons/search.svg',
+                  InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const SearchScreen()));
+                    },
+                    child: SizedBox(
+                      height: MediaQuery.sizeOf(context).height*.025,
+                      width: MediaQuery.sizeOf(context).height*.025,
+                      child: SvgPicture.asset(
+                        'assets/icons/search.svg',
+                      ),
                     ),
                   ),
                   SizedBox(width: MediaQuery.sizeOf(context).height*.02,),
@@ -60,27 +81,38 @@ class HomeScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
                       itemBuilder: (context,index){
-                        return Container(
-                          height: MediaQuery.of(context).size.height*0.1,
-                          width: MediaQuery.of(context).size.height*0.1,
+                        return GestureDetector(
+                          onTap: (){
+                            Get.to(
+                              () => BrandNameScreen(
+                                brandName: Constants.homeBrandName[index],
+                                index: index,
+                              )
+                            );
+                          },
+                          child: Container(
+                            height: MediaQuery.of(context).size.height*0.1,
+                            width: MediaQuery.of(context).size.height*0.1,
 
-                          padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.01),
+                            padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.01),
 
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.01),
-                            color: ColorManager.lightGrey,
-                          ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.01),
+                              color: ColorManager.lightGrey,
+                            ),
 
-                          child: SvgPicture.asset(
-                            Constants.brandsImagesSvg[index],
-                            color: ColorManager.white,
+                            child: SvgPicture.asset(
+                              Constants.homeBrandImages[index],
+                              allowDrawingOutsideViewBox: true,
+                              color: ColorManager.white,
+                            ),
                           ),
                         );
                       },
                       separatorBuilder: (context,index){
                         return SizedBox(width: MediaQuery.sizeOf(context).height*.02,);
                       },
-                      itemCount: Constants.brandsImagesSvg.length,
+                      itemCount: Constants.homeBrandImages.length,
                   ),
                 ),
               ),
@@ -161,7 +193,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "الكلً",
+                                "الكل",
                                 style: TextStyle(
                                     color: ColorManager.secondaryColor,
                                     fontSize: MediaQuery.sizeOf(context).height*.016,
@@ -172,17 +204,17 @@ class HomeScreen extends StatelessWidget {
                           ),
 
                           SizedBox(
-                            height: MediaQuery.sizeOf(context).height*.35,
+                            height: MediaQuery.sizeOf(context).height*.4,
                             child: ListView.separated(
                                 physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context,index){
-                                  return HomeItem(index: index,);
+                                  return HomeItem(index: index, type: 'lastAdded',);
                                 },
                                 separatorBuilder: (context,index){
                                   return SizedBox(width: MediaQuery.sizeOf(context).height*.01,);
                                 },
-                                itemCount: 10,
+                                itemCount: cubit.newSellProducts!.length,
                             ),
                           ),
 
@@ -193,7 +225,7 @@ class HomeScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "الأكثر طلباًً",
+                                "الأكثر طلباً",
                                 style: TextStyle(
                                     color: ColorManager.black,
                                     fontSize: MediaQuery.sizeOf(context).height*.02,
@@ -201,7 +233,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "الكلً",
+                                "الكل",
                                 style: TextStyle(
                                     color: ColorManager.secondaryColor,
                                     fontSize: MediaQuery.sizeOf(context).height*.016,
@@ -212,17 +244,17 @@ class HomeScreen extends StatelessWidget {
                           ),
 
                           SizedBox(
-                            height: MediaQuery.sizeOf(context).height*.35,
+                            height: MediaQuery.sizeOf(context).height*.4,
                             child: ListView.separated(
                               physics: const BouncingScrollPhysics(),
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context,index){
-                                return HomeItem(index: index,);
+                                return HomeItem(index: index, type: 'mostSelling',);
                               },
                               separatorBuilder: (context,index){
                                 return SizedBox(width: MediaQuery.sizeOf(context).height*.01,);
                               },
-                              itemCount: 10,
+                              itemCount: cubit.bestSellProducts!.length,
                             ),
                           ),
 
@@ -233,7 +265,7 @@ class HomeScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "الموصى بهًً",
+                                "الموصى به",
                                 style: TextStyle(
                                     color: ColorManager.black,
                                     fontSize: MediaQuery.sizeOf(context).height*.02,
@@ -241,7 +273,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "الكلً",
+                                "الكل",
                                 style: TextStyle(
                                     color: ColorManager.secondaryColor,
                                     fontSize: MediaQuery.sizeOf(context).height*.016,
@@ -252,17 +284,17 @@ class HomeScreen extends StatelessWidget {
                           ),
 
                           SizedBox(
-                            height: MediaQuery.sizeOf(context).height*.35,
+                            height: MediaQuery.sizeOf(context).height*.4,
                             child: ListView.separated(
                               physics: const BouncingScrollPhysics(),
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context,index){
-                                return HomeItem(index: index,);
+                                return HomeItem(index: index, type: 'recommended',);
                               },
                               separatorBuilder: (context,index){
                                 return SizedBox(width: MediaQuery.sizeOf(context).height*.01,);
                               },
-                              itemCount: 10,
+                              itemCount: cubit.bestSellProducts!.length,
                             ),
                           ),
 
@@ -279,5 +311,7 @@ class HomeScreen extends StatelessWidget {
       ),
       ),
     );
+  },
+);
   }
 }

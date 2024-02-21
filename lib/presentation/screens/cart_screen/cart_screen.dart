@@ -32,6 +32,7 @@ class CartScreen extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(20),
             ),
+            //
             child: Column(
               children: [
                 Expanded(

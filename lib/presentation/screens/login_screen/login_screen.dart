@@ -11,7 +11,7 @@ import 'package:shop_car/styles/colors/color_manager.dart';
 class LoginScreen extends StatelessWidget {
   static var emailController = TextEditingController();
   static var passController = TextEditingController();
-  static var formKey = GlobalKey<FormState>();
+  static  GlobalKey<FormState> formKey = GlobalKey();
 
   const LoginScreen({super.key});
 

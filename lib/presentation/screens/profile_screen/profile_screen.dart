@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop_car/business_logic/app_cubit/app_cubit.dart';
 import 'package:shop_car/constants/constants.dart';
  import 'package:shop_car/presentation/screens/favorite_screen/favorite_screen.dart';
+import 'package:shop_car/presentation/screens/login_screen/login_screen.dart';
 import 'package:shop_car/presentation/screens/notifications_screen/notifications_screen.dart';
 import 'package:shop_car/presentation/screens/profile_screen/edit_profile_screen.dart';
 import 'package:shop_car/styles/colors/color_manager.dart';
@@ -105,6 +107,10 @@ class ProfileScreen extends StatelessWidget {
                                 }
                                 if(index==3){
                                   Get.to(const FavoriteScreen(),transition: Transition.fadeIn);
+                                }if(index==6){
+                                  AppCubit.get(context).signOut().then((value) {
+                                    Get.offAll(const LoginScreen(),transition: Transition.fadeIn);
+                                  });
                                 }
                               },
                               child: Column(
