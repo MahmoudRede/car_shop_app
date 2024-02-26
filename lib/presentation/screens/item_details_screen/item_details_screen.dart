@@ -9,12 +9,25 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class ItemDetailsScreen extends StatelessWidget {
   final int index;
   String productName;
-  String productType;
-  String brandName;
-  String subBrandName;
+  String factoryName;
+  String productModel;
+  String quantity;
+  String price;
+  String imageUrl;
   String startYear;
   String endYear;
-    ItemDetailsScreen({ required this.productName, required this.productType, required this.index, required this.brandName, required this.subBrandName, required this.startYear, required this.endYear, super.key});
+
+  ItemDetailsScreen(
+      {required this.index,
+      required this.productName,
+      required this.factoryName,
+      required this.quantity,
+      required this.productModel,
+      required this.price,
+      required this.imageUrl,
+      required this.startYear,
+      required this.endYear,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,31 +45,31 @@ class ItemDetailsScreen extends StatelessWidget {
               width: double.infinity,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image:  AssetImage('assets/images/splash_screen.png'),
-                  )
-              ),
-
+                fit: BoxFit.fill,
+                image: AssetImage('assets/images/splash_screen.png'),
+              )),
               child: Column(
                 children: [
-
                   SizedBox(
-                    height: MediaQuery.of(context).size.height*0.15,
+                    height: MediaQuery.of(context).size.height * 0.15,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(width: MediaQuery.of(context).size.width*.05,),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * .05,
+                        ),
                         Text(
                           "المنتج من الداخل",
                           style: TextStyle(
                               color: ColorManager.white,
-                              fontSize: MediaQuery.sizeOf(context).height*.022,
-                              fontWeight: FontWeight.w600
-                          ),),
-
+                              fontSize:
+                                  MediaQuery.sizeOf(context).height * .022,
+                              fontWeight: FontWeight.w600),
+                        ),
                         IconButton(
-                          onPressed: (){
-                            AppCubit.get(context).switchShowItemMoreDetails(false);
+                          onPressed: () {
+                            AppCubit.get(context)
+                                .switchShowItemMoreDetails(false);
                             Navigator.pop(context);
                           },
                           icon: const Icon(Icons.arrow_forward_ios),
@@ -65,47 +78,55 @@ class ItemDetailsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*.02),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * .02),
                     child: Container(
-                      height: MediaQuery.of(context).size.height*0.85,
+                      height: MediaQuery.of(context).size.height * 0.85,
                       width: MediaQuery.of(context).size.width,
-
                       decoration: BoxDecoration(
                         color: ColorManager.darkWhite,
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(MediaQuery.of(context).size.height*0.02),
-                          topRight: Radius.circular(MediaQuery.of(context).size.height*0.02),
+                          topLeft: Radius.circular(
+                              MediaQuery.of(context).size.height * 0.02),
+                          topRight: Radius.circular(
+                              MediaQuery.of(context).size.height * 0.02),
                         ),
                       ),
-
-
                       child: SingleChildScrollView(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*.02),
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width * .02),
                           child: Column(
                             children: [
-
-                              SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.02,
+                              ),
 
                               /// car images slider
                               Material(
                                 elevation: 5,
-                                borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
+                                borderRadius: BorderRadius.circular(
+                                    MediaQuery.of(context).size.height * 0.02),
                                 child: Container(
-                                  height: MediaQuery.of(context).size.height*0.2,
-
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.2,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
+                                    borderRadius: BorderRadius.circular(
+                                        MediaQuery.of(context).size.height *
+                                            0.02),
                                     gradient: const LinearGradient(
                                       begin: Alignment.topCenter,
                                       end: Alignment.bottomCenter,
                                       stops: [0.25, 1.0],
-                                      colors: [ColorManager.white, ColorManager.lightGrey],
+                                      colors: [
+                                        ColorManager.white,
+                                        ColorManager.lightGrey
+                                      ],
                                     ),
                                   ),
-
                                   child: Stack(
                                     alignment: Alignment.bottomCenter,
                                     children: [
@@ -113,24 +134,40 @@ class ItemDetailsScreen extends StatelessWidget {
                                         controller: carouselCarController,
                                         children: Constants.itemDetailsCarsImage
                                             .map((e) => Padding(
-                                          padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.015),
-                                          child: Image.asset(e),
-                                        ))
+                                                  padding: EdgeInsets.all(
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .height *
+                                                          0.015),
+                                                  child: Image.asset(e),
+                                                ))
                                             .toList(),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.01),
+                                        padding: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.01),
                                         child: SmoothPageIndicator(
                                           controller: carouselCarController,
-                                          count: Constants.itemDetailsCarsImage.length,
+                                          count: Constants
+                                              .itemDetailsCarsImage.length,
                                           effect: ExpandingDotsEffect(
                                               spacing: 8.0,
                                               radius: 4.0,
-                                              dotWidth: MediaQuery.of(context).size.height * .008,
-                                              dotHeight: MediaQuery.of(context).size.height* .005,
+                                              dotWidth: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  .008,
+                                              dotHeight: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  .005,
                                               strokeWidth: 1.5,
                                               dotColor: ColorManager.white,
-                                              activeDotColor: ColorManager.secondaryColor),
+                                              activeDotColor:
+                                                  ColorManager.secondaryColor),
                                         ),
                                       ),
                                     ],
@@ -138,204 +175,269 @@ class ItemDetailsScreen extends StatelessWidget {
                                 ),
                               ),
 
-                              SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.02,
+                              ),
 
                               /// item info details
                               Visibility(
-                                visible: false,
+                                visible: true,
                                 child: Material(
                                   elevation: 5,
-                                  borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
+                                  borderRadius: BorderRadius.circular(
+                                      MediaQuery.of(context).size.height *
+                                          0.02),
                                   child: Container(
-                                    height: MediaQuery.of(context).size.height*0.28,
-
+                                    height: MediaQuery.of(context).size.height *
+                                        0.28,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
-                                        color: ColorManager.darkWhite2
-                                    ),
-
+                                        borderRadius: BorderRadius.circular(
+                                            MediaQuery.of(context).size.height *
+                                                0.02),
+                                        color: ColorManager.darkWhite2),
                                     child: Padding(
-                                      padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.02),
+                                      padding: EdgeInsets.all(
+                                          MediaQuery.of(context).size.height *
+                                              0.02),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Padding(
-                                            padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01) ,//EdgeInsets.symmetric(8.0),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.01),
+                                            //EdgeInsets.symmetric(8.0),
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Text(
-                                                  'سيارة تويوتا',
+                                                  productName,
                                                   style: TextStyle(
-                                                      fontSize: MediaQuery.of(context).size.height*0.02,
-                                                      fontWeight: FontWeight.w600
-                                                  ),
-                                                ),
-                                                Text(
-                                                  'رقم الطلب : 54513134',
-                                                  style: TextStyle(
-                                                      fontSize: MediaQuery.of(context).size.height*0.018,
-                                                      fontWeight: FontWeight.w400
-                                                  ),
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.02,
+                                                      fontWeight:
+                                                          FontWeight.w600),
                                                 ),
                                               ],
                                             ),
                                           ),
-
                                           Padding(
-                                            padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01) ,//EdgeInsets.symmetric(8.0),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.01),
+                                            //EdgeInsets.symmetric(8.0),
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Text(
-                                                  'كامري',
+                                                  productModel,
                                                   style: TextStyle(
-                                                      fontSize: MediaQuery.of(context).size.height*0.02,
-                                                      fontWeight: FontWeight.w400
-                                                  ),
-                                                ),
-                                                Text(
-                                                  'تاريخ الطلب : 21/2/2021',
-                                                  style: TextStyle(
-                                                      fontSize: MediaQuery.of(context).size.height*0.018,
-                                                      fontWeight: FontWeight.w400
-                                                  ),
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.02,
+                                                      fontWeight:
+                                                          FontWeight.w400),
                                                 ),
                                               ],
                                             ),
                                           ),
-
                                           Padding(
-                                            padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01) ,//EdgeInsets.symmetric(8.0),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.01),
+                                            //EdgeInsets.symmetric(8.0),
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Text(
-                                                  'موديل : 2017',
+                                                  productModel,
                                                   style: TextStyle(
-                                                      fontSize: MediaQuery.of(context).size.height*0.02,
-                                                      fontWeight: FontWeight.w400
-                                                  ),
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.02,
+                                                      fontWeight:
+                                                          FontWeight.w400),
                                                 ),
                                                 Text(
-                                                  'عدد القطع : 1',
+                                                  'عدد القطع : $quantity',
                                                   style: TextStyle(
-                                                      fontSize: MediaQuery.of(context).size.height*0.018,
-                                                      fontWeight: FontWeight.w400
-                                                  ),
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.018,
+                                                      fontWeight:
+                                                          FontWeight.w400),
                                                 ),
                                               ],
                                             ),
                                           ),
-
-                                          Text(
-                                            'رقم الهيكل :  5214545121011',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context).size.height*0.018,
-                                                fontWeight: FontWeight.w400
-                                            ),
-                                          ),
-
-                                          Text(
-                                            'وصف الطلب',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context).size.height*0.021,
-                                                fontWeight: FontWeight.w600
-                                            ),
-                                          ),
-
-                                          Text(
-                                            'القطعة : 1',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context).size.height*0.021,
-                                                fontWeight: FontWeight.w600
-                                            ),
-                                          ),
-
                                           Padding(
-                                            padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01) ,//EdgeInsets.symmetric(8.0),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.01),
+                                            //EdgeInsets.symmetric(8.0),
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Text(
                                                   'موتور كامل',
                                                   style: TextStyle(
-                                                      fontSize: MediaQuery.of(context).size.height*0.02,
-                                                      fontWeight: FontWeight.w400
-                                                  ),
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.02,
+                                                      fontWeight:
+                                                          FontWeight.w400),
                                                 ),
                                                 Container(
-                                                  height: MediaQuery.of(context).size.height*0.04,
-                                                  width: MediaQuery.of(context).size.height*0.1,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.04,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.1,
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.05),
-                                                      color: ColorManager.darkWhite
-                                                  ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.05),
+                                                      color: ColorManager
+                                                          .darkWhite),
                                                   child: Text(
                                                     'كوري',
                                                     style: TextStyle(
-                                                        fontSize: MediaQuery.of(context).size.height*0.02,
-                                                        fontWeight: FontWeight.w400
-                                                    ),
+                                                        fontSize: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            0.02,
+                                                        fontWeight:
+                                                            FontWeight.w400),
                                                   ),
                                                 ),
                                               ],
                                             ),
                                           ),
-
                                         ],
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.02,
+                              ),
 
                               /// item images with info details
                               Visibility(
-                                visible: !AppCubit.get(context).showItemMoreDetails,
+                                visible:
+                                    !AppCubit.get(context).showItemMoreDetails,
                                 child: Material(
                                   elevation: 5,
-                                  borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
+                                  borderRadius: BorderRadius.circular(
+                                      MediaQuery.of(context).size.height *
+                                          0.02),
                                   child: Container(
-                                    height: MediaQuery.of(context).size.height*0.32,
-
+                                    height: MediaQuery.of(context).size.height *
+                                        0.32,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
-                                        color: ColorManager.darkWhite2
-                                    ),
-
+                                        borderRadius: BorderRadius.circular(
+                                            MediaQuery.of(context).size.height *
+                                                0.02),
+                                        color: ColorManager.darkWhite2),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Column(
                                         children: [
                                           SizedBox(
-                                            height: MediaQuery.of(context).size.height*0.2,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.2,
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
                                               children: [
                                                 InkWell(
-                                                  onTap: (){
-                                                    carouselItemsController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
+                                                  onTap: () {
+                                                    carouselItemsController
+                                                        .nextPage(
+                                                            duration:
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        500),
+                                                            curve:
+                                                                Curves.easeIn);
                                                   },
                                                   child: Material(
                                                     elevation: 2,
-                                                    borderRadius: BorderRadius.circular(1000),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            1000),
                                                     child: Container(
-                                                      height: MediaQuery.of(context).size.height*0.035,
-                                                      width: MediaQuery.of(context).size.height*0.035,
-                                                      alignment: Alignment.center,
-
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.035,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.035,
+                                                      alignment:
+                                                          Alignment.center,
                                                       decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.circular(1000),
-                                                          color: ColorManager.white
-                                                      ),
-
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      1000),
+                                                          color: ColorManager
+                                                              .white),
                                                       child: Icon(
                                                         Icons.arrow_back_ios,
-                                                        color: ColorManager.grey,
+                                                        color:
+                                                            ColorManager.grey,
                                                         size: 16,
                                                       ),
                                                     ),
@@ -343,35 +445,64 @@ class ItemDetailsScreen extends StatelessWidget {
                                                 ),
                                                 Expanded(
                                                   child: PageView(
-                                                    controller: carouselItemsController,
-                                                    children: Constants.itemDetailsItemsImage
+                                                    controller:
+                                                        carouselItemsController,
+                                                    children: Constants
+                                                        .itemDetailsItemsImage
                                                         .map((e) => Padding(
-                                                      padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.015),
-                                                      child: Image.asset(e),
-                                                    ))
+                                                              padding: EdgeInsets.all(
+                                                                  MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.015),
+                                                              child:
+                                                                  Image.asset(
+                                                                      e),
+                                                            ))
                                                         .toList(),
                                                   ),
                                                 ),
                                                 InkWell(
-                                                  onTap: (){
-                                                    carouselItemsController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
+                                                  onTap: () {
+                                                    carouselItemsController
+                                                        .previousPage(
+                                                            duration:
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        500),
+                                                            curve:
+                                                                Curves.easeIn);
                                                   },
                                                   child: Material(
                                                     elevation: 2,
-                                                    borderRadius: BorderRadius.circular(1000),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            1000),
                                                     child: Container(
-                                                      height: MediaQuery.of(context).size.height*0.035,
-                                                      width: MediaQuery.of(context).size.height*0.035,
-                                                      alignment: Alignment.center,
-
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.035,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.035,
+                                                      alignment:
+                                                          Alignment.center,
                                                       decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.circular(1000),
-                                                          color: ColorManager.white
-                                                      ),
-
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      1000),
+                                                          color: ColorManager
+                                                              .white),
                                                       child: Icon(
                                                         Icons.arrow_forward_ios,
-                                                        color: ColorManager.grey,
+                                                        color:
+                                                            ColorManager.grey,
                                                         size: 16,
                                                       ),
                                                     ),
@@ -380,74 +511,129 @@ class ItemDetailsScreen extends StatelessWidget {
                                               ],
                                             ),
                                           ),
-
                                           Padding(
-                                            padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01) ,//EdgeInsets.symmetric(8.0),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.01),
+                                            //EdgeInsets.symmetric(8.0),
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      brandName,
+                                                      productModel,
                                                       style: TextStyle(
-                                                          fontSize: MediaQuery.of(context).size.height*0.02,
-                                                          fontWeight: FontWeight.w600
-                                                      ),
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              0.02,
+                                                          fontWeight:
+                                                              FontWeight.w600),
                                                     ),
-                                                    SizedBox(width: MediaQuery.of(context).size.height*0.01,),
+                                                    SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.01,
+                                                    ),
                                                     Text(
-                                                      subBrandName,
+                                                      factoryName,
                                                       style: TextStyle(
-                                                          fontSize: MediaQuery.of(context).size.height*0.02,
-                                                          fontWeight: FontWeight.w400
-                                                      ),
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              0.02,
+                                                          fontWeight:
+                                                              FontWeight.w400),
                                                     ),
-                                                    SizedBox(width: MediaQuery.of(context).size.height*0.01,),
+                                                    SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.01,
+                                                    ),
                                                     Text(
                                                       startYear,
                                                       style: TextStyle(
-                                                          fontSize: MediaQuery.of(context).size.height*0.02,
-                                                          fontWeight: FontWeight.w400
-                                                      ),
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              0.02,
+                                                          fontWeight:
+                                                              FontWeight.w400),
                                                     ),
                                                   ],
                                                 ),
-
                                                 Container(
-                                                  height: MediaQuery.of(context).size.height*0.04,
-                                                  width: MediaQuery.of(context).size.height*0.1,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.04,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.1,
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.05),
-                                                      color: ColorManager.darkWhite
-                                                  ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.05),
+                                                      color: ColorManager
+                                                          .darkWhite),
                                                   child: Text(
                                                     'كوري',
                                                     style: TextStyle(
-                                                        fontSize: MediaQuery.of(context).size.height*0.02,
-                                                        fontWeight: FontWeight.w400
-                                                    ),
+                                                        fontSize: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            0.02,
+                                                        fontWeight:
+                                                            FontWeight.w400),
                                                   ),
                                                 ),
                                               ],
                                             ),
                                           ),
-
-
                                           Padding(
-                                            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.01),
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      productType,
+                                                      "productType",
                                                       style: TextStyle(
-                                                          fontSize: MediaQuery.of(context).size.height*0.02,
-                                                          fontWeight: FontWeight.w400
-                                                      ),
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              0.02,
+                                                          fontWeight:
+                                                              FontWeight.w400),
                                                     ),
                                                   ],
                                                 ),
@@ -456,17 +642,33 @@ class ItemDetailsScreen extends StatelessWidget {
                                                     Text(
                                                       'SR',
                                                       style: TextStyle(
-                                                          fontSize: MediaQuery.of(context).size.height*0.02,
-                                                          fontWeight: FontWeight.w400
-                                                      ),
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              0.02,
+                                                          fontWeight:
+                                                              FontWeight.w400),
                                                     ),
-                                                    SizedBox(width: MediaQuery.of(context).size.height*0.005,),
+                                                    SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.005,
+                                                    ),
                                                     Text(
-                                                      '3500',
+                                                      price,
                                                       style: TextStyle(
-                                                          fontSize: MediaQuery.of(context).size.height*0.03,
-                                                          fontWeight: FontWeight.w700,
-                                                          color: ColorManager.secondaryColor),
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              0.03,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                          color: ColorManager
+                                                              .secondaryColor),
                                                     ),
                                                   ],
                                                 ),
@@ -480,49 +682,72 @@ class ItemDetailsScreen extends StatelessWidget {
                                 ),
                               ),
                               Visibility(
-                                visible: !AppCubit.get(context).showItemMoreDetails,
-                                  child: SizedBox(height: MediaQuery.of(context).size.height*0.02,)
-                              ),
+                                  visible: !AppCubit.get(context)
+                                      .showItemMoreDetails,
+                                  child: SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.02,
+                                  )),
 
                               /// item images only details
                               Visibility(
-                                visible: AppCubit.get(context).showItemMoreDetails,
+                                visible:
+                                    AppCubit.get(context).showItemMoreDetails,
                                 child: Material(
                                   elevation: 5,
-                                  borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
+                                  borderRadius: BorderRadius.circular(
+                                      MediaQuery.of(context).size.height *
+                                          0.02),
                                   child: Container(
-                                    height: MediaQuery.of(context).size.height*0.2,
-
+                                    height: MediaQuery.of(context).size.height *
+                                        0.2,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
-                                        color: ColorManager.darkWhite2
-                                    ),
-
+                                        borderRadius: BorderRadius.circular(
+                                            MediaQuery.of(context).size.height *
+                                                0.02),
+                                        color: ColorManager.darkWhite2),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: SizedBox(
-                                        height: MediaQuery.of(context).size.height*0.2,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.2,
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: [
                                             InkWell(
-                                              onTap: (){
-                                                carouselItemsController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
+                                              onTap: () {
+                                                carouselItemsController
+                                                    .nextPage(
+                                                        duration:
+                                                            const Duration(
+                                                                milliseconds:
+                                                                    500),
+                                                        curve: Curves.easeIn);
                                               },
                                               child: Material(
                                                 elevation: 2,
-                                                borderRadius: BorderRadius.circular(1000),
+                                                borderRadius:
+                                                    BorderRadius.circular(1000),
                                                 child: Container(
-                                                  height: MediaQuery.of(context).size.height*0.035,
-                                                  width: MediaQuery.of(context).size.height*0.035,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.035,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.035,
                                                   alignment: Alignment.center,
-
                                                   decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(1000),
-                                                      color: ColorManager.white
-                                                  ),
-
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              1000),
+                                                      color:
+                                                          ColorManager.white),
                                                   child: Icon(
                                                     Icons.arrow_back_ios,
                                                     color: ColorManager.grey,
@@ -533,32 +758,52 @@ class ItemDetailsScreen extends StatelessWidget {
                                             ),
                                             Expanded(
                                               child: PageView(
-                                                controller: carouselItemsController,
-                                                children: Constants.itemDetailsItemsImage
+                                                controller:
+                                                    carouselItemsController,
+                                                children: Constants
+                                                    .itemDetailsItemsImage
                                                     .map((e) => Padding(
-                                                  padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.015),
-                                                  child: Image.asset(e),
-                                                ))
+                                                          padding: EdgeInsets
+                                                              .all(MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.015),
+                                                          child: Image.asset(e),
+                                                        ))
                                                     .toList(),
                                               ),
                                             ),
                                             InkWell(
-                                              onTap: (){
-                                                carouselItemsController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
+                                              onTap: () {
+                                                carouselItemsController
+                                                    .previousPage(
+                                                        duration:
+                                                            const Duration(
+                                                                milliseconds:
+                                                                    500),
+                                                        curve: Curves.easeIn);
                                               },
                                               child: Material(
                                                 elevation: 2,
-                                                borderRadius: BorderRadius.circular(1000),
+                                                borderRadius:
+                                                    BorderRadius.circular(1000),
                                                 child: Container(
-                                                  height: MediaQuery.of(context).size.height*0.035,
-                                                  width: MediaQuery.of(context).size.height*0.035,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.035,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.035,
                                                   alignment: Alignment.center,
-
                                                   decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(1000),
-                                                      color: ColorManager.white
-                                                  ),
-
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              1000),
+                                                      color:
+                                                          ColorManager.white),
                                                   child: Icon(
                                                     Icons.arrow_forward_ios,
                                                     color: ColorManager.grey,
@@ -576,103 +821,167 @@ class ItemDetailsScreen extends StatelessWidget {
                               ),
                               // sizebox
                               Visibility(
-                                visible: AppCubit.get(context).showItemMoreDetails,
-                                child: SizedBox(height: MediaQuery.of(context).size.height*0.035,),
+                                visible:
+                                    AppCubit.get(context).showItemMoreDetails,
+                                child: SizedBox(
+                                  height: MediaQuery.of(context).size.height *
+                                      0.035,
+                                ),
                               ),
-
 
                               /// item seller details
                               Visibility(
-                                visible: AppCubit.get(context).showItemMoreDetails,
+                                visible:
+                                    AppCubit.get(context).showItemMoreDetails,
                                 child: Container(
-                                  height: MediaQuery.of(context).size.height*0.15,
-
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.15,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.02),
-                                      color: ColorManager.darkWhite2
-                                  ),
-
+                                      borderRadius: BorderRadius.circular(
+                                          MediaQuery.of(context).size.height *
+                                              0.02),
+                                      color: ColorManager.darkWhite2),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Padding(
-                                          padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01) ,//EdgeInsets.symmetric(8.0),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.01),
+                                          //EdgeInsets.symmetric(8.0),
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 'اسم التاجر',
                                                 style: TextStyle(
-                                                    fontSize: MediaQuery.of(context).size.height*0.018,
-                                                    fontWeight: FontWeight.w500
-                                                ),
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.018,
+                                                    fontWeight:
+                                                        FontWeight.w500),
                                               ),
-
-
                                               Text(
                                                 'الشماسي لقطع الغير',
                                                 style: TextStyle(
-                                                    fontSize: MediaQuery.of(context).size.height*0.014,
-                                                    fontWeight: FontWeight.w400
-                                                ),
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.014,
+                                                    fontWeight:
+                                                        FontWeight.w400),
                                               ),
                                             ],
                                           ),
                                         ),
                                         SizedBox(
-                                          height: MediaQuery.of(context).size.height*0.015,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.015,
                                           child: Padding(
-                                            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.015),
-                                            child: const Divider(color: ColorManager.darkWhite,),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.015),
+                                            child: const Divider(
+                                              color: ColorManager.darkWhite,
+                                            ),
                                           ),
                                         ),
                                         Padding(
-                                          padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01) ,//EdgeInsets.symmetric(8.0),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.01),
+                                          //EdgeInsets.symmetric(8.0),
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 'عنوان التاجر',
                                                 style: TextStyle(
-                                                    fontSize: MediaQuery.of(context).size.height*0.018,
-                                                    fontWeight: FontWeight.w500
-                                                ),
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.018,
+                                                    fontWeight:
+                                                        FontWeight.w500),
                                               ),
-
-
                                               Text(
                                                 'الصناعية، شارع،47323',
                                                 style: TextStyle(
-                                                    fontSize: MediaQuery.of(context).size.height*0.014,
-                                                    fontWeight: FontWeight.w400
-                                                ),
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.014,
+                                                    fontWeight:
+                                                        FontWeight.w400),
                                               ),
                                             ],
                                           ),
                                         ),
                                         SizedBox(
-                                          height: MediaQuery.of(context).size.height*0.015,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.015,
                                           child: Padding(
-                                            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.015),
-                                            child: const Divider(color: ColorManager.darkWhite,),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.015),
+                                            child: const Divider(
+                                              color: ColorManager.darkWhite,
+                                            ),
                                           ),
                                         ),
                                         Padding(
-                                          padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01) ,//EdgeInsets.symmetric(8.0),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.01),
+                                          //EdgeInsets.symmetric(8.0),
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 'التقييم',
                                                 style: TextStyle(
-                                                    fontSize: MediaQuery.of(context).size.height*0.018,
-                                                    fontWeight: FontWeight.w500
-                                                ),
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.018,
+                                                    fontWeight:
+                                                        FontWeight.w500),
                                               ),
-
-                                              Image.asset('assets/images/rating.png',height: MediaQuery.of(context).size.height*0.015,),
+                                              Image.asset(
+                                                'assets/images/rating.png',
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.015,
+                                              ),
                                             ],
                                           ),
                                         ),
@@ -681,103 +990,149 @@ class ItemDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
+
                               ///sized box
                               Visibility(
-                                visible: AppCubit.get(context).showItemMoreDetails,
-                                child: SizedBox(height: MediaQuery.of(context).size.height*0.035,),
+                                visible:
+                                    AppCubit.get(context).showItemMoreDetails,
+                                child: SizedBox(
+                                  height: MediaQuery.of(context).size.height *
+                                      0.035,
+                                ),
                               ),
-
-
 
                               /// priceing details
                               Visibility(
-                                visible: AppCubit.get(context).showItemMoreDetails,
+                                visible:
+                                    AppCubit.get(context).showItemMoreDetails,
                                 child: Column(
                                   children: [
                                     Padding(
-                                      padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01) ,//EdgeInsets.symmetric(8.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01),
+                                      //EdgeInsets.symmetric(8.0),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             'قيمة التوصيل',
                                             style: TextStyle(
-                                                fontSize: MediaQuery.of(context).size.height*0.02,
-                                                fontWeight: FontWeight.w400
-                                            ),
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.02,
+                                                fontWeight: FontWeight.w400),
                                           ),
-
-
                                           Text(
                                             '17  SR',
                                             style: TextStyle(
-                                                fontSize: MediaQuery.of(context).size.height*0.018,
-                                                fontWeight: FontWeight.w400
-                                            ),
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.018,
+                                                fontWeight: FontWeight.w400),
                                           ),
                                         ],
                                       ),
                                     ),
-                                    SizedBox(height: MediaQuery.of(context).size.height*0.015,),
-
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.015,
+                                    ),
 
                                     Padding(
-                                      padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01) ,//EdgeInsets.symmetric(8.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01),
+                                      //EdgeInsets.symmetric(8.0),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             'القيمه المضافة',
                                             style: TextStyle(
-                                                fontSize: MediaQuery.of(context).size.height*0.02,
-                                                fontWeight: FontWeight.w400
-                                            ),
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.02,
+                                                fontWeight: FontWeight.w400),
                                           ),
-
-
                                           Text(
                                             '3  SR',
                                             style: TextStyle(
-                                                fontSize: MediaQuery.of(context).size.height*0.018,
-                                                fontWeight: FontWeight.w400
-                                            ),
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.018,
+                                                fontWeight: FontWeight.w400),
                                           ),
                                         ],
                                       ),
                                     ),
-                                    SizedBox(height: MediaQuery.of(context).size.height*0.015,),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.015,
+                                    ),
 
                                     Padding(
-                                      padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01) ,//EdgeInsets.symmetric(8.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01),
+                                      //EdgeInsets.symmetric(8.0),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             'الإجمالي المبلغ',
                                             style: TextStyle(
-                                                fontSize: MediaQuery.of(context).size.height*0.02,
-                                                fontWeight: FontWeight.w400
-                                            ),
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.02,
+                                                fontWeight: FontWeight.w400),
                                           ),
-
-
                                           Row(
                                             children: [
                                               Text(
                                                 'SR',
                                                 style: TextStyle(
-                                                    fontSize: MediaQuery.of(context).size.height*0.018,
-                                                    fontWeight: FontWeight.w400
-                                                ),
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.018,
+                                                    fontWeight:
+                                                        FontWeight.w400),
                                               ),
-                                              SizedBox(width: MediaQuery.of(context).size.height*0.01,),
+                                              SizedBox(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.01,
+                                              ),
                                               Text(
                                                 '3500',
                                                 style: TextStyle(
-                                                    fontSize: MediaQuery.of(context).size.height*0.02,
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.02,
                                                     fontWeight: FontWeight.w600,
-                                                    color: ColorManager.secondaryColor
-                                                ),
+                                                    color: ColorManager
+                                                        .secondaryColor),
                                               ),
                                             ],
                                           ),
@@ -785,22 +1140,32 @@ class ItemDetailsScreen extends StatelessWidget {
                                       ),
                                     ),
 
-                                    SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.02,
+                                    ),
 
                                     Padding(
-                                      padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01) ,//EdgeInsets.symmetric(8.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01),
+                                      //EdgeInsets.symmetric(8.0),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             'تحميل فاتورة ضريبة القيمة المضافة',
                                             style: TextStyle(
-                                                fontSize: MediaQuery.of(context).size.height*0.014,
-                                                fontWeight: FontWeight.w400
-                                            ),
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.014,
+                                                fontWeight: FontWeight.w400),
                                           ),
-
-
                                           const Icon(
                                             Icons.download_rounded,
                                             color: ColorManager.black,
@@ -809,43 +1174,65 @@ class ItemDetailsScreen extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(height: MediaQuery.of(context).size.height*0.04,),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.04,
+                                    ),
 
                                     /// add to card
                                     Container(
-                                      height: MediaQuery.of(context).size.height*0.06,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.06,
                                       width: MediaQuery.of(context).size.width,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.05),
-                                          color: ColorManager.secondaryColor
-                                      ),
+                                          borderRadius: BorderRadius.circular(
+                                              MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.05),
+                                          color: ColorManager.secondaryColor),
                                       child: Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.02),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.02),
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
                                               'اضافة سريعة',
                                               style: TextStyle(
-                                                  fontSize: MediaQuery.of(context).size.height*0.015,
-                                                  fontWeight: FontWeight.w400
-                                              ),
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .height *
+                                                          0.015,
+                                                  fontWeight: FontWeight.w400),
                                             ),
-
                                             Container(
-                                              height: MediaQuery.of(context).size.height*0.04,
-                                              width: MediaQuery.of(context).size.height*0.04,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.04,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.04,
                                               alignment: Alignment.center,
-
                                               decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(1000),
-                                                  color: ColorManager.white
-                                              ),
-
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          1000),
+                                                  color: ColorManager.white),
                                               child: const Icon(
                                                 Icons.shopping_cart_outlined,
-                                                color: ColorManager.secondaryColor,
+                                                color:
+                                                    ColorManager.secondaryColor,
                                                 size: 16,
                                               ),
                                             ),
@@ -854,33 +1241,42 @@ class ItemDetailsScreen extends StatelessWidget {
                                       ),
                                     ),
 
-                                    SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.02,
+                                    ),
                                   ],
                                 ),
                               ),
 
-
                               Visibility(
-                                visible: !AppCubit.get(context).showItemMoreDetails,
+                                visible:
+                                    !AppCubit.get(context).showItemMoreDetails,
                                 child: Row(
                                   children: [
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-
                                         /// share button
                                         Row(
                                           children: [
                                             Container(
-                                              height: MediaQuery.of(context).size.height*0.05,
-                                              width: MediaQuery.of(context).size.height*0.05,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.05,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.05,
                                               alignment: Alignment.center,
-
                                               decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(1000),
-                                                  color: ColorManager.white
-                                              ),
-
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          1000),
+                                                  color: ColorManager.white),
                                               child: Icon(
                                                 Icons.ios_share_outlined,
                                                 color: ColorManager.grey,
@@ -888,63 +1284,96 @@ class ItemDetailsScreen extends StatelessWidget {
                                               ),
                                             ),
 
-                                            SizedBox(width: MediaQuery.of(context).size.height*0.02,),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.02,
+                                            ),
 
                                             /// favorite button
                                             Container(
-                                              height: MediaQuery.of(context).size.height*0.05,
-                                              width: MediaQuery.of(context).size.height*0.05,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.05,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.05,
                                               alignment: Alignment.center,
-
                                               decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(1000),
-                                                  color: ColorManager.white
-                                              ),
-
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          1000),
+                                                  color: ColorManager.white),
                                               child: const Icon(
                                                 Icons.favorite_border,
-                                                color: ColorManager.secondaryColor,
+                                                color:
+                                                    ColorManager.secondaryColor,
                                                 size: 20,
                                               ),
                                             ),
                                           ],
                                         ),
 
-
                                         Container(
-                                          height: MediaQuery.of(context).size.height*0.05,
-                                          width: MediaQuery.of(context).size.height*0.18,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.05,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.18,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.05),
-                                              color: ColorManager.secondaryColor
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .height *
+                                                          0.05),
+                                              color:
+                                                  ColorManager.secondaryColor),
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
                                               children: [
                                                 Text(
                                                   'اضافة سريعة',
                                                   style: TextStyle(
-                                                      fontSize: MediaQuery.of(context).size.height*0.015,
-                                                      fontWeight: FontWeight.w400
-                                                  ),
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.015,
+                                                      fontWeight:
+                                                          FontWeight.w400),
                                                 ),
-
                                                 Container(
-                                                  height: MediaQuery.of(context).size.height*0.04,
-                                                  width: MediaQuery.of(context).size.height*0.04,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.04,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.04,
                                                   alignment: Alignment.center,
-
                                                   decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(1000),
-                                                      color: ColorManager.white
-                                                  ),
-
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              1000),
+                                                      color:
+                                                          ColorManager.white),
                                                   child: const Icon(
-                                                    Icons.shopping_cart_outlined,
-                                                    color: ColorManager.secondaryColor,
+                                                    Icons
+                                                        .shopping_cart_outlined,
+                                                    color: ColorManager
+                                                        .secondaryColor,
                                                     size: 16,
                                                   ),
                                                 ),
@@ -957,51 +1386,69 @@ class ItemDetailsScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.02,
+                              ),
 
                               /// more details button
                               Visibility(
-                                visible: !AppCubit.get(context).showItemMoreDetails,
+                                visible:
+                                    !AppCubit.get(context).showItemMoreDetails,
                                 child: InkWell(
-                                  onTap: (){
-                                    AppCubit.get(context).switchShowItemMoreDetails(true);
+                                  onTap: () {
+                                    AppCubit.get(context)
+                                        .switchShowItemMoreDetails(true);
                                   },
                                   child: Container(
-                                    height: MediaQuery.of(context).size.height*0.06,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.06,
                                     width: MediaQuery.of(context).size.width,
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.05),
-                                        color: ColorManager.lightGrey
-                                    ),
+                                        borderRadius: BorderRadius.circular(
+                                            MediaQuery.of(context).size.height *
+                                                0.05),
+                                        color: ColorManager.lightGrey),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          SizedBox(width: MediaQuery.of(context).size.height*0.01,),
+                                          SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.01,
+                                          ),
                                           Text(
                                             'التفاصيل',
                                             style: TextStyle(
-                                                fontSize: MediaQuery.of(context).size.height*0.021,
-                                                fontWeight: FontWeight.w400
-                                            ),
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.021,
+                                                fontWeight: FontWeight.w400),
                                           ),
-
                                           Container(
-                                            height: MediaQuery.of(context).size.height*0.04,
-                                            width: MediaQuery.of(context).size.height*0.04,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.04,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.04,
                                             alignment: Alignment.center,
-
                                             decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(1000),
-                                                color: ColorManager.white
-                                            ),
-
+                                                borderRadius:
+                                                    BorderRadius.circular(1000),
+                                                color: ColorManager.white),
                                             child: const Icon(
                                               Icons.arrow_forward_ios,
-                                              color: ColorManager.secondaryColor,
+                                              color:
+                                                  ColorManager.secondaryColor,
                                               size: 16,
                                             ),
                                           ),
@@ -1015,8 +1462,6 @@ class ItemDetailsScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-
-
                     ),
                   ),
                 ],

@@ -52,12 +52,12 @@ class ProfileScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text('خالد الشهري',style: TextStyle(
+                          Text(AppCubit.get(context).userModel!.userName!,style: TextStyle(
                                 color: ColorManager.textColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: MediaQuery.sizeOf(context).height*.03
                           ),),
-                          Text('info@gmail.com',style: TextStyle(
+                          Text(AppCubit.get(context).userModel!.email!,style: TextStyle(
                               color: ColorManager.grey,
                               fontSize: MediaQuery.sizeOf(context).height*.015
                           ),),

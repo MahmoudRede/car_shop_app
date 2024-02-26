@@ -106,30 +106,28 @@ class ProductsScreen extends StatelessWidget {
                               mainAxisExtent: MediaQuery.sizeOf(context).height * .35
                       ),
                       itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {},
-                          child: ProductItem(
-                              index: index,
-                              brandName: brandName,
-                              subBrandName: subBrandName,
-                              startYear: startYear,
-                              endYear: endYear,
-                            onTap: () {
-                               Get.to(
+                        return ProductItem(
+                            index: index,
+                            brandName: brandName,
+                            subBrandName: subBrandName,
+                            startYear: startYear,
+                            endYear: endYear,
+                          onTap: () {
+                             Get.to(
+                               ItemDetailsScreen(
+                                 index: index,
+                                 startYear: startYear,
+                                 endYear: endYear,
+                                 productName: '',
+                                 price: '',
+                                 imageUrl: '',
+                                 factoryName: '',
+                                 quantity: '',
+                                 productModel: '',
 
-                                 ItemDetailsScreen(
-                                   index: index,
-                                   brandName: brandName,
-                                   subBrandName: subBrandName,
-                                   startYear: startYear,
-                                   endYear: endYear,
-                                   productName: '',
-                                   productType: '',
 
-
-                                 ));
-                            },),
-                        );
+                               ));
+                          },);
                       },
                       itemCount: AppCubit.get(context).myProducts.length,
                     ),

@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_car/business_logic/app_cubit/app_cubit.dart';
+import 'package:shop_car/business_logic/app_cubit/app_states.dart';
 import 'package:shop_car/presentation/screens/cart_screen/widgets/cart_item.dart';
 import 'package:shop_car/presentation/screens/cart_screen/widgets/prices_column.dart';
 import 'package:shop_car/presentation/screens/payment_screen/payments_screen.dart';
@@ -11,6 +14,10 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<AppCubit, AppStates>(
+  listener: (context, state) {},
+  builder: (context, state) {
+    var cubit = AppCubit.get(context);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -48,7 +55,7 @@ class CartScreen extends StatelessWidget {
                           height: MediaQuery.sizeOf(context).height * .001,
                         );
                       },
-                      itemCount: 3),
+                      itemCount: 1),
                 ),
                 const PricesColumn(),
                 Padding(
@@ -91,5 +98,7 @@ class CartScreen extends StatelessWidget {
         ],
       ),
     );
+  },
+);
   }
 }

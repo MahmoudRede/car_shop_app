@@ -15,6 +15,8 @@ class DefaultTextFormField extends StatefulWidget {
   TextInputType textInputType;
   bool isEnabled;
   bool isImage;
+  bool isSearch;
+  void Function(String)? onChanged;
   TextEditingController controller = TextEditingController();
 
   DefaultTextFormField(
@@ -26,6 +28,8 @@ class DefaultTextFormField extends StatefulWidget {
         required this.textInputType,
         this.labelText='',
         this.isImage = false,
+        this.isSearch = false,
+        this.onChanged,
         this.value = '',
         this.prefixIcon,
         this.suffixIcon,
@@ -51,7 +55,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
              borderRadius: BorderRadius.circular(50)
            ),
           child: TextFormField(
-            textInputAction: TextInputAction.next,
+            textInputAction: widget.isSearch==true?TextInputAction.done :TextInputAction.next,
             style: Theme.of(context).textTheme.headlineSmall!.copyWith(
               fontSize: 15.0,
               color: ColorManager.black,
@@ -87,9 +91,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
             keyboardType: widget.textInputType,
             controller: widget.controller,
             enabled: widget.isEnabled,
-            onChanged: (value) {
-              widget.value = value;
-            },
+            onChanged: widget.isSearch == true ? widget.onChanged : (value){},
             validator: (value) {
               if (value!.isEmpty) {
                 return widget.validateMessage;

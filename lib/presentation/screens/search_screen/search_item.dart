@@ -1,10 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_car/business_logic/app_cubit/app_cubit.dart';
+import 'package:shop_car/core/local/cash_helper.dart';
 import '../../../../styles/colors/color_manager.dart';
 
 class SearchItem extends StatelessWidget {
-  int index;
+  final int index;
 
-  SearchItem({required this.index, super.key});
+  const SearchItem({required this.index, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,78 +26,98 @@ class SearchItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               // Icon of favorite
-              const Icon(
-                Icons.favorite_border,
-                color: ColorManager.secondaryColor,
+              InkWell(
+                onTap: (){
+
+                },
+                child: const Icon(
+                  Icons.favorite_border,
+                  color: ColorManager.secondaryColor,
+                ),
               ),
 
               // image of product
-              Image.asset(
-                "assets/images/product_image.png",
-                fit: BoxFit.cover,
-                height: MediaQuery.sizeOf(context).height * .15,
-              ),
 
-              // Name of product
-              Text("موتور تويوتا كامري، 2020",
-                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                  fontSize: MediaQuery.sizeOf(context).height * .02,
+              Center(
+                child: CachedNetworkImage(
+                  imageUrl: '${AppCubit.get(context).search[index]['ImgUrl']}',
+                  height: 70,
+                  width: 70,
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(
+                      color: ColorManager.secondaryColor,
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => Center(
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                    ),
+                  ),
                 ),
-                textAlign: TextAlign.end,
+              ),
+              SizedBox( height: MediaQuery.sizeOf(context).height * .01,),
+              // Name of product
+              Directionality(
+                textDirection: TextDirection.ltr,
+                child: Text(
+                  CashHelper.getData(key: CashHelper.languageKey).toString() ==
+                          "ar"
+                      ? AppCubit.get(context).search[index]['ProductName']
+                      : AppCubit.get(context).search[index]['LatinName'],
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        fontSize: MediaQuery.sizeOf(context).height * .02,
+                    overflow: TextOverflow.fade,
+                      ),
+                  textAlign: TextAlign.end,
+                ),
               ),
 
-              SizedBox(height: MediaQuery.sizeOf(context).height * .01,),
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * .01,
+              ),
               // description of product
               Text(
-                "محتوى تجريبي عن وصف المنتج ومكوناته",
+                AppCubit.get(context).search[index]['ProductType'],
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  color: ColorManager.grey,
-                ),
+                      color: ColorManager.grey,
+                    ),
                 textAlign: TextAlign.end,
-                overflow: TextOverflow.ellipsis
-                ,),
+                overflow: TextOverflow.ellipsis,
+              ),
 
-              SizedBox(height: MediaQuery.sizeOf(context).height * .01,),
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * .01,
+              ),
 
               // Total price and number of items
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  Icon(Icons.description_outlined,
+                      color: ColorManager.black.withOpacity(.6)),
                   Text(
-                    "3500",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineMedium!
-                        .copyWith(
-                       fontSize: MediaQuery.sizeOf(context).height * .02,
-                        color: ColorManager.secondaryColor
-                            .withOpacity(.9),
-                        fontWeight: FontWeight.bold),
-                  ),
-
-                  Text(
-                    "SR",
+                    AppCubit.get(context).search[index]['Quantity'].toString(),
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontSize: MediaQuery.sizeOf(context).height * .012,
-                    ),
+                          fontSize: MediaQuery.sizeOf(context).height * .015,
+                        ),
                   ),
                   const Spacer(),
                   Text(
-                    "8 قطع",
-                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontSize: MediaQuery.sizeOf(context).height * .01,
-                    ),
+                    AppCubit.get(context).search[index]['Price'].toString(),
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        fontSize: MediaQuery.sizeOf(context).height * .02,
+                        color: ColorManager.secondaryColor.withOpacity(.9),
+                        fontWeight: FontWeight.bold),
                   ),
-
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).height * .004,
+                  ),
                   Text(
-                    " : متبقي ",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineSmall!.copyWith(
-                      fontSize: MediaQuery.sizeOf(context).height * .012,
-                    ),
+                    "SR",
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                          fontSize: MediaQuery.sizeOf(context).height * .018,
+                        ),
                   ),
                 ],
               ),
@@ -102,7 +125,6 @@ class SearchItem extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.sizeOf(context).width * .03,
               ),
-
             ],
           ),
         ),

@@ -6,7 +6,7 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://trsrv.xtra-go.com:8010/Products/',
+        baseUrl: 'https://supportserver.easybooks.me:8010/Products/',
         receiveDataWhenStatusError: true,
       ),
 
