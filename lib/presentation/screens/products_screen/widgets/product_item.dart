@@ -54,9 +54,14 @@ class ProductItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // Icon of favorite
-                            const Icon(
-                              Icons.favorite_border,
-                              color: ColorManager.secondaryColor,
+                            GestureDetector(
+                              onTap: () {
+
+                              },
+                              child: const Icon(
+                                Icons.favorite_border,
+                                color: ColorManager.secondaryColor,
+                              ),
                             ),
 
                             // image of product

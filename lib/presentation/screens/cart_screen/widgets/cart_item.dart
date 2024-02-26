@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_car/business_logic/app_cubit/app_cubit.dart';
@@ -37,15 +38,11 @@ class CartItem extends StatelessWidget {
                     // Row contains the cancel button and the order number
                     Expanded(
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          CancelButton(onTap: () {}),
-                          const Row(
-                            children: [
-                              Text("65444"),
-                              Text(":رقم الطلب"),
-                            ],
-                          ),
+                          CancelButton(onTap: () {
+
+                          }),
                         ],
                       ),
                     ),
@@ -54,30 +51,24 @@ class CartItem extends StatelessWidget {
                     ),
                     // Text of brand name
                     Expanded(
-                      child: Text("موتور تويوتا كامري، 2020",
+                      child: Text(AppCubit.get(context).allFavorite[index]["name"],
                           style: Theme.of(context).textTheme.headlineMedium),
                     ),
                     SizedBox(
                       height: MediaQuery.sizeOf(context).height * .01,
                     ),
                     // Row contains the seller name
-                    const Row(
+                      Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          "احمد سلمان",
-                        ),
-                        Text(
-                          ":البائع",
+                          AppCubit.get(context).allFavorite[index]['address'],
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: MediaQuery.sizeOf(context).height * .01,
-                    ),
+
                     // Time of order
-                    const Text("منذ : 1 ساعة 16 دقيقة"),
-                    SizedBox(
+                     SizedBox(
                       height: MediaQuery.sizeOf(context).height * .02,
                     ),
                     // Total price
@@ -85,7 +76,7 @@ class CartItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          "3500",
+                          AppCubit.get(context).allFavorite[index]['price'],
                           style: Theme.of(context)
                               .textTheme
                               .headlineMedium!
@@ -114,16 +105,27 @@ class CartItem extends StatelessWidget {
                 child: Column(
                   children: [
                     //
-                    Image.asset(
-                      "assets/images/product_image.png",
-                      fit: BoxFit.fitWidth,
+                    CachedNetworkImage(
+                      imageUrl:
+                      '${AppCubit.get(context).allFavorite[index]['image']}',
                       height: MediaQuery.sizeOf(context).height * .15,
+                      width: MediaQuery.sizeOf(context).height * .15,
+                      placeholder: (context, url) =>
+                      const Center(
+                        child: CircularProgressIndicator(
+                          color: ColorManager.red,
+                        ),
+                      ),
+                      errorWidget: (context, url, error) =>
+                          Center(
+                            child: Image.asset(
+                              'assets/images/logo.png',
+                            ),
+                          ),
                     ),
                     const Spacer(),
                     BlocConsumer<AppCubit, AppStates>(
-                      listener: (context, state) {
-                        // TODO: implement listener
-                      },
+                      listener: (context, state) {},
                       builder: (context, state) {
                         return Container(
                             height: MediaQuery.sizeOf(context).height * .04,
@@ -195,7 +197,7 @@ class CartItem extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                ]));
+                                ],),);
                       },
                     ),
                   ],

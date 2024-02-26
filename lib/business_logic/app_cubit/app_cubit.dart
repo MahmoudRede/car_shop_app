@@ -18,6 +18,8 @@ class AppCubit extends Cubit<AppStates> {
 
   static AppCubit get(context) => BlocProvider.of(context);
 
+  List productsFavoritesControllers =
+  List.generate(2000, (index) => TextEditingController());
   bool isValue = false;
 
   void switchTerms(bool value) {
@@ -193,14 +195,13 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   Future<void> deleteUser({
-    required String id,
     required context,
   }) async {
     emit(DeleteUserLoadingState());
 
     FirebaseFirestore.instance
         .collection('Users')
-        .doc(id)
+        .doc("${CashHelper.removeData(key: "isUid")}")
         .delete()
         .then((value) {
       CashHelper.removeData(key: "isUid");
@@ -442,5 +443,6 @@ class AppCubit extends Cubit<AppStates> {
       emit(GetProductsFromApiErrorState());
     });
   }
+
 
 }
