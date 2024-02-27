@@ -82,3 +82,11 @@ class GetNewSellProductsFromApiLoadingState extends AppStates {}
 class GetNewSellProductsFromApiSuccessState extends AppStates {}
 
 class GetNewSellProductsFromApiErrorState extends AppStates {}
+
+class UploadUserProductsLoadingState extends AppStates {}
+class UploadUserProductsSuccessState extends AppStates {}
+class UploadUserProductsErrorState extends AppStates {}
+
+class GetUserProductsLoadingState extends AppStates {}
+class GetUserProductsSuccessState extends AppStates {}
+class GetUserProductsErrorState extends AppStates {}

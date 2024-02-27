@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_car/business_logic/app_cubit/app_cubit.dart';
 import '../../../../styles/colors/color_manager.dart';
 
 class FilesItem extends StatelessWidget {
@@ -40,7 +42,7 @@ class FilesItem extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              "اسم المنتج المعروض",
+                              AppCubit.get(context).cartList[index].productName!,
                               style: TextStyle(
                                 fontSize: MediaQuery.sizeOf(context).height * .0185,
                                 color: ColorManager.black,
@@ -58,7 +60,7 @@ class FilesItem extends StatelessWidget {
 
                       // description of product
                       Text(
-                        "محتوى تجريبي عن وصف المنتج ومكوناته",
+                        AppCubit.get(context).cartList[index].productDescribtion!,
                         style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                           color: ColorManager.grey,
                         ),
@@ -73,7 +75,7 @@ class FilesItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            "3500",
+                            AppCubit.get(context).cartList[index].productPrice!,
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineMedium!
@@ -91,7 +93,7 @@ class FilesItem extends StatelessWidget {
                           ),
                           const Spacer(),
                           Text(
-                            "8 قطع",
+                            " قطع${AppCubit.get(context).cartList[index].productPrice!}",
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           SizedBox(
@@ -117,11 +119,25 @@ class FilesItem extends StatelessWidget {
                 // image of product
                 Expanded(
                   flex: 1,
-                  child: Image.asset(
-                    "assets/images/product_image.png",
-                    fit: BoxFit.fitWidth,
-                    height: MediaQuery.sizeOf(context).height * .14,
+                  child: CachedNetworkImage(
+                    imageUrl:
+                    AppCubit.get(context).cartList[index].productImage!,
+                    height: MediaQuery.sizeOf(context).height * .15,
+                    width: MediaQuery.sizeOf(context).height * .15,
+                    placeholder: (context, url) =>
+                    const Center(
+                      child: CircularProgressIndicator(
+                        color: ColorManager.red,
+                      ),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        Center(
+                          child: Image.asset(
+                            'assets/images/logo.png',
+                          ),
+                        ),
                   ),
+
                 ),
               ],
             ),

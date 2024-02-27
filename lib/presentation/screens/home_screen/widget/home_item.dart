@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_car/business_logic/app_cubit/app_cubit.dart';
 import 'package:shop_car/presentation/screens/item_details_screen/item_details_screen.dart';
@@ -19,8 +20,7 @@ class HomeItem extends StatelessWidget {
           MaterialPageRoute(
             builder: (_) {
               return ItemDetailsScreen(
-                productName: AppCubit.get(context)
-                    .bestSellProducts![index].productName!,
+                productName: type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].productName! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].productName! : AppCubit.get(context).bestSellProducts![index].productName!,
                 index: index,
                 startYear: AppCubit.get(context)
                     .bestSellProducts![index]
@@ -28,21 +28,15 @@ class HomeItem extends StatelessWidget {
                 endYear: AppCubit.get(context)
                     .bestSellProducts![index]
                     .endDate!,
-                price: AppCubit.get(context)
-                    .bestSellProducts![index]
-                    .quantity.toString(),
-                imageUrl: AppCubit.get(context)
-                    .bestSellProducts![index]
-                    .imgUrl!,
+                price: "${type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].quantity! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].quantity! : type == "recommended" ? AppCubit.get(context).bestSellProducts![index].quantity! : ""}",
+                imageUrl:type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].imgUrl! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].imgUrl! : AppCubit.get(context).bestSellProducts![index].imgUrl!,
                 factoryName: AppCubit.get(context)
                     .bestSellProducts![index]
                     .factory!,
                 quantity: AppCubit.get(context)
                     .bestSellProducts![index]
                     .quantity.toString(),
-                productModel: AppCubit.get(context)
-                    .bestSellProducts![index]
-                    .productModel!,
+                productModel: type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].productType! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].productType! : type == "recommended" ? AppCubit.get(context).bestSellProducts![index].productType! : "",
               );
             },
           ),
@@ -64,9 +58,41 @@ class HomeItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Icon of favorite
-                const Icon(
-                  Icons.favorite_border,
-                  color: ColorManager.secondaryColor,
+                GestureDetector(
+                  onTap: (){
+                    if(AppCubit.get(context).favoriteValues[index]==true){
+                      AppCubit.get(context).insertDatabase(
+                          name: type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].productName! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].productName! : AppCubit.get(context).bestSellProducts![index].productName!,
+                          code: type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].productType! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].productType! : type == "recommended" ? AppCubit.get(context).bestSellProducts![index].productType! : "",
+                          price: "${type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].quantity! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].quantity! : type == "recommended" ? AppCubit.get(context).bestSellProducts![index].quantity! : ""}",
+                          number: "${type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].quantity! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].quantity! : type == "recommended" ? AppCubit.get(context).bestSellProducts![index].quantity! : ""}",
+                          image: type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].imgUrl! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].imgUrl! : AppCubit.get(context).bestSellProducts![index].imgUrl!,
+                          context: context,
+                          favorite: 'no'
+                      ).then((value) {
+                        AppCubit.get(context).changeFavoriteValues(index);
+                      });
+                    }else{
+                      AppCubit.get(context).insertDatabase(
+                          name: type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].productName! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].productName! : AppCubit.get(context).bestSellProducts![index].productName!,
+                          code: type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].productType! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].productType! : type == "recommended" ? AppCubit.get(context).bestSellProducts![index].productType! : "",
+                          price: "${type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].quantity! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].quantity! : type == "recommended" ? AppCubit.get(context).bestSellProducts![index].quantity! : ""}",
+                          number: "${type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].quantity! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].quantity! : type == "recommended" ? AppCubit.get(context).bestSellProducts![index].quantity! : ""}",
+                          image: type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].imgUrl! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].imgUrl! : AppCubit.get(context).bestSellProducts![index].imgUrl!,
+                          context: context,
+                          favorite: 'yes'
+                      ).then((value) {
+                        AppCubit.get(context).changeFavoriteValues(index);
+
+                      });
+                    }
+
+
+                  },
+                  child:  Icon(
+                    AppCubit.get(context).favoriteValues[index]==true ? Icons.favorite : Icons.favorite_border,
+                    color: AppCubit.get(context).favoriteValues[index]==true ? ColorManager.secondaryColor : ColorManager.secondaryColor,
+                  ),
                 ),
 
                 // image of product
@@ -129,7 +155,9 @@ class HomeItem extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontSize: MediaQuery.sizeOf(context).height * .02,
                       ),
-                  textAlign: TextAlign.end,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
                 ),
 
                 SizedBox(
@@ -151,6 +179,7 @@ class HomeItem extends StatelessWidget {
                                   .productType!
                               : "",
                   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        fontSize: MediaQuery.sizeOf(context).height * .02,
                         color: ColorManager.grey,
                       ),
                   textAlign: TextAlign.end,
@@ -168,12 +197,12 @@ class HomeItem extends StatelessWidget {
                     Icon(Icons.description_outlined,
                         color: ColorManager.black.withOpacity(.6)),
                     Text(
-                      "${type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].quantity! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].quantity! : type == "recommended" ? AppCubit.get(context).bestSellProducts![index].quantity! : ""}",
+                        "${type == "lastAdded" ? AppCubit.get(context).newSellProducts![index].quantity! : type == "mostSelling" ? AppCubit.get(context).bestSellProducts![index].quantity! : type == "recommended" ? AppCubit.get(context).bestSellProducts![index].quantity! : ""}",
                       style: Theme.of(context)
                           .textTheme
                           .headlineSmall!
                           .copyWith(
-                            fontSize: MediaQuery.sizeOf(context).height * .01,
+                            fontSize: MediaQuery.sizeOf(context).height * .015,
                           ),
                     ),
                     const Spacer(),

@@ -50,9 +50,11 @@ class CartItem extends StatelessWidget {
                       height: MediaQuery.sizeOf(context).height * .01,
                     ),
                     // Text of brand name
-                    Expanded(
-                      child: Text(AppCubit.get(context).allFavorite[index]["name"],
-                          style: Theme.of(context).textTheme.headlineMedium),
+                    Text(AppCubit.get(context).cartList[index].productName!,
+                        style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                          fontSize: MediaQuery.sizeOf(context).height * .02,
+                        ),
+                        maxLines: 2,
                     ),
                     SizedBox(
                       height: MediaQuery.sizeOf(context).height * .01,
@@ -62,7 +64,7 @@ class CartItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          AppCubit.get(context).allFavorite[index]['address'],
+                          AppCubit.get(context).cartList[index].productDescribtion!,
                         ),
                       ],
                     ),
@@ -76,7 +78,7 @@ class CartItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          AppCubit.get(context).allFavorite[index]['price'],
+                          AppCubit.get(context).cartList[index].productPrice!,
                           style: Theme.of(context)
                               .textTheme
                               .headlineMedium!
@@ -107,7 +109,7 @@ class CartItem extends StatelessWidget {
                     //
                     CachedNetworkImage(
                       imageUrl:
-                      '${AppCubit.get(context).allFavorite[index]['image']}',
+                      AppCubit.get(context).cartList[index].productImage!,
                       height: MediaQuery.sizeOf(context).height * .15,
                       width: MediaQuery.sizeOf(context).height * .15,
                       placeholder: (context, url) =>

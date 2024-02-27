@@ -97,15 +97,105 @@ class Constants{
     'assets/images/corolla.png',
     'assets/images/yaris.png',
     'assets/images/folanshiner.png',
+    'assets/images/folanshiner.png',
   ];
   static List<String> toyotaSubBrandName=[
-    'كروك',
     'كامري',
-    'روميون',
-    'كورولا',
-    'يارس',
-    'فولاتشنر',
+    'افلون',
+    'لاندكروز',
+    'كورلا',
+    'لكزس RX350',
+    'برادو',
+    'هايلوكس',
 
+  ];
+
+
+  static List<String> camryStart = [
+    '2004',
+    '2007',
+    '2007',
+    '2013',
+    '2015',
+    '2018',
+    '2018',
+    '2018',
+  ];
+
+  static List<String> camryEnd = [
+    '2006',
+    '2009',
+    '2011',
+    '2020',
+    '2017',
+    '2020',
+    '2022',
+    '2023',
+  ];
+
+  static List<String> eflonStart =
+  [ '1998',
+    '2013',
+    '2018',
+
+  ];
+
+  static List<String> eflonEnd = [
+    '2022',
+    '2018',
+    '2020',
+  ];
+
+  static List<String> landStart = [
+    '2005',
+    '2008',
+    '2008',
+  ];
+
+  static List<String> landEnd = [
+    '2007',
+    '2015',
+    '2015',
+  ];
+
+  static List<String> croraStart = [
+    '2005',
+    '2008',
+    '2011',
+  ];
+
+  static List<String> croraEnd = [
+    '2007',
+    '2013',
+    '2013',
+  ];
+
+  static  List<String> lacsStart = [
+    '2018',
+  ];
+
+  static List<String> lacsEnd = [
+    '2020',
+  ];
+
+  static List<String> bordoStart = [
+    '2003',
+
+  ];
+
+  static List<String> bordoEnd = [
+    '2010',
+
+  ];
+
+  static List<String> holoxStart = [
+    '2006',
+    '2016',
+  ];
+
+  static List<String> holoxEnd = [
+    '2015',
+    '2020',
   ];
 
   static List<String> nissanSubBrandImages=[

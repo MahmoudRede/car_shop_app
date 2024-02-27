@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_car/business_logic/app_cubit/app_states.dart';
 import 'package:shop_car/constants/constants.dart';
 import 'package:shop_car/core/local/cash_helper.dart';
+import 'package:shop_car/data/models/cart_model.dart';
 import 'package:shop_car/data/models/user_model.dart';
 import 'package:shop_car/presentation/widgets/custom_toast.dart';
 import 'package:shop_car/styles/colors/color_manager.dart';
@@ -30,6 +31,9 @@ class AppCubit extends Cubit<AppStates> {
   int currentIndex = 2;
 
   void switchIconColor(int index) {
+    if(index==1 || index==3){
+      getFromCart();
+    }
     currentIndex = index;
     Constants.iconColors = List.generate(5, (index) => false);
     Constants.iconColors[index] = !Constants.iconColors[index];
@@ -216,8 +220,17 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
+  List<bool> favoriteValues=List.generate(500, (index) => false);
   Database? database;
   List<Map> allFavorite = [];
+
+
+  void changeFavoriteValues(index){
+
+    favoriteValues[index] = !favoriteValues[index];
+    emit(CreateDatabaseSuccessState());
+
+  }
 
   void createDatabase() async {
     return await openDatabase('favorite.db', version: 1,
@@ -252,12 +265,13 @@ class AppCubit extends Cubit<AppStates> {
     required String price,
     required String number,
     required String image,
+    required String favorite,
     required context,
   }) async {
     return database?.transaction((txn) {
       return txn
           .rawInsert(
-          'INSERT INTO favorite (name,address,price,rate,image,favorite) VALUES ( "$name" , "$code" , "$price" , "$number" , "$image" , "yes")')
+          'INSERT INTO favorite (name,address,price,rate,image,favorite) VALUES ( "$name" , "$code" , "$price" , "$number" , "$image" , "$favorite")')
           .then((value) {
         debugPrint("$value Insert Success");
         emit(InsertDatabaseSuccessState());
@@ -275,7 +289,9 @@ class AppCubit extends Cubit<AppStates> {
     allFavorite = [];
     return await database?.rawQuery('SELECT * FROM favorite').then((value) {
       value.forEach((element) {
-        allFavorite.add(element);
+        if(element['favorite'] == 'yes'){
+          allFavorite.add(element);
+        }
       });
 
       debugPrint(allFavorite.toString());
@@ -303,7 +319,7 @@ class AppCubit extends Cubit<AppStates> {
     required String id,
   }) async {
     database?.rawUpdate(
-        'UPDATE favorite SET rate = ? WHERE id = ?',
+        'UPDATE favorite SET favorite = ? WHERE id = ?',
         [number, id]).then((value) {
       debugPrint('Update Done');
       getDatabase(database);
@@ -443,6 +459,71 @@ class AppCubit extends Cubit<AppStates> {
       emit(GetProductsFromApiErrorState());
     });
   }
+
+
+  Future<void> uploadToCart({
+    required String productName,
+    required String productDescription,
+    required String productImage,
+    required String productPrice,
+   })async{
+
+    emit(UploadUserProductsLoadingState());
+    CartModel cartModel=CartModel(
+        productName: productName,
+        productImage: productImage,
+        productPrice: productPrice,
+        productDescribtion: productDescription
+    );
+
+    await FirebaseFirestore.instance
+        .collection('userProducts')
+         .doc(CashHelper.getData(key: 'isUid'))
+         .collection('products')
+        .add(cartModel.toJson()).then((value) {
+
+          debugPrint('upload products successfully');
+      emit(UploadUserProductsSuccessState());
+
+    }).catchError((error){
+
+      debugPrint('error during upload products is ${error.toString()}');
+      emit(UploadUserProductsErrorState());
+
+    });
+
+  }
+
+
+  List<CartModel> cartList=[];
+
+  Future<void> getFromCart()async{
+
+    cartList=[];
+    emit(GetUserProductsLoadingState());
+
+    await FirebaseFirestore.instance
+        .collection('userProducts')
+        .doc(CashHelper.getData(key: 'isUid'))
+        .collection('products')
+        .get().then((value) {
+          value.docs.forEach((element) {
+
+            cartList.add(CartModel.fromJson(element.data()));
+
+          });
+      debugPrint('get products successfully');
+      emit(GetUserProductsSuccessState());
+
+    }).catchError((error){
+
+      debugPrint('error during get products is ${error.toString()}');
+      emit(GetUserProductsErrorState());
+
+    });
+
+  }
+
 
 
 }

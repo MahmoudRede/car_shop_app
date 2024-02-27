@@ -57,6 +57,7 @@ class MainProducts {
   double? price;
   bool? newItem;
   bool? bestSeller;
+  String? state;
   String? imgUrl;
   num? quantity;
 
@@ -84,6 +85,7 @@ class MainProducts {
         this.price,
         this.newItem,
         this.bestSeller,
+        this.state,
         this.imgUrl,
         this.quantity});
 
@@ -111,6 +113,7 @@ class MainProducts {
     price = json['price'];
     newItem = json['NewItem'];
     bestSeller = json['BestSeller'];
+    state = 'no';
     imgUrl = json['ImgUrl'];
     quantity = json['Quantity'];
   }

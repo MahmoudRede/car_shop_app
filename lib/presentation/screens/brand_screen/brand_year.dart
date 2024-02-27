@@ -92,28 +92,49 @@ class BrandYearScreen extends StatelessWidget {
                         itemBuilder:  (context, index) {
                           return GestureDetector(
                             onTap: () {
+                              (brandName=='نيسان')?
                               Get.to(  BrandTypeScreen(index: index,
-                                  brandName: brandName,
-                                  subBrandName: subBrandName,
-                                  startYear:
-                                  subBrandName =="التيما" ? Constants.timaStart[index]:
-                                  subBrandName =="فيرسا" ? Constants.versaStart[index]:
-                                  subBrandName =="روج" ? Constants.rogStart[index]:
-                                  subBrandName =="نافارا" ? Constants.nafaraStart[index]:
-                                  subBrandName =="سني هندي" ? Constants.sunnyStart[index]:
-                                  subBrandName =="جوك" ? Constants.gocStart[index]:
-                                  Constants.syntraStart[index],
-                                endYear: subBrandName =="التيما" ? Constants.timaEnd[index]:
-                                subBrandName =="فيرسا" ? Constants.versaEnd[index]:
-                                subBrandName =="روج" ? Constants.rogEnd[index]:
-                                subBrandName =="نافارا" ? Constants.nafaraEnd[index]:
-                                subBrandName =="سني هندي" ? Constants.sunnyEnd[index]:
-                                subBrandName =="جوك" ? Constants.gocEnd[index]:
-                                Constants.syntraEnd[index]
+                              brandName: brandName,
+                              subBrandName: subBrandName,
 
-
+                              startYear:
+                              subBrandName =="التيما" ? Constants.timaStart[index]:
+                              subBrandName =="فيرسا" ? Constants.versaStart[index]:
+                              subBrandName =="روج" ? Constants.rogStart[index]:
+                              subBrandName =="نافارا" ? Constants.nafaraStart[index]:
+                              subBrandName =="سني هندي" ? Constants.sunnyStart[index]:
+                              subBrandName =="جوك" ? Constants.gocStart[index]:
+                              Constants.syntraStart[index],
+                              endYear: subBrandName =="التيما" ? Constants.timaEnd[index]:
+                              subBrandName =="فيرسا" ? Constants.versaEnd[index]:
+                              subBrandName =="روج" ? Constants.rogEnd[index]:
+                              subBrandName =="نافارا" ? Constants.nafaraEnd[index]:
+                              subBrandName =="سني هندي" ? Constants.sunnyEnd[index]:
+                              subBrandName =="جوك" ? Constants.gocEnd[index]:
+                              Constants.syntraEnd[index],
                               ),
-                                  transition: Transition.fadeIn);
+                             transition: Transition.fadeIn):
+                              Get.to(  BrandTypeScreen(index: index,
+                                brandName: brandName,
+                                subBrandName: subBrandName,
+
+                                startYear:
+                                subBrandName =="كامري" ? Constants.camryStart[index]:
+                                subBrandName =="افلون" ? Constants.eflonStart[index]:
+                                subBrandName =="لاندكروز" ? Constants.landStart[index]:
+                                subBrandName =="كورلا" ? Constants.croraStart[index]:
+                                subBrandName =="لكزس RX350" ? Constants.lacsStart[index]:
+                                subBrandName =="برادو" ? Constants.gocStart[index]:
+                                subBrandName =="برادو" ? Constants.bordoStart[index]:
+                                Constants.holoxStart[index],
+                                endYear: subBrandName =="كامري" ? Constants.camryEnd[index]:
+                                subBrandName =="افلون" ? Constants.eflonEnd[index]:
+                                subBrandName =="لاندكروز" ? Constants.landEnd[index]:
+                                subBrandName =="كورلا" ? Constants.croraEnd[index]:
+                                subBrandName =="لكزس RX350" ? Constants.lacsEnd[index]:
+                                subBrandName =="برادو" ? Constants.bordoEnd[index]:
+                                Constants.holoxEnd[index],
+                              ));
                             },
                             child: Column(
                               children: [
@@ -146,6 +167,9 @@ class BrandYearScreen extends StatelessWidget {
                                 SizedBox(
                                     height: MediaQuery.sizeOf(context).height *
                                         .03),
+
+                                brandName=='نيسان' ?
+
                                 Text(
                                   subBrandName =="التيما" ? "${Constants.timaStart[index]} - ${Constants.timaEnd[index]}" :
                                   subBrandName =="فيرسا" ? "${Constants.versaStart[index]} - ${Constants.versaEnd[index]}" :
@@ -157,19 +181,37 @@ class BrandYearScreen extends StatelessWidget {
                                   style: const TextStyle(
                                     color: ColorManager.textColor,
                                   ),
-                                )
+                                ):
+                                  Text(
+                                  subBrandName =="كامري" ? "${Constants.camryStart[index]} - ${Constants.camryEnd[index]}" :
+                                  subBrandName =="افلون" ? "${Constants.eflonStart[index]} - ${Constants.eflonEnd[index]}" :
+                                  subBrandName =="لاندكروز" ? "${Constants.landStart[index]} - ${Constants.landEnd[index]}" :
+                                  subBrandName =="كورلا" ? "${Constants.croraStart[index]} - ${Constants.croraEnd[index]}" :
+                                  subBrandName =="لكزس RX350" ? "${Constants.lacsStart[index]} - ${Constants.lacsEnd[index]}" :
+                                  subBrandName =="برادو" ? "${Constants.bordoStart[index]} - ${Constants.bordoEnd[index]}" :
+                                  subBrandName =="هايلوكس" ? "${Constants.holoxStart[index]} - ${Constants.holoxEnd[index]}" :"",
+                                  style: const TextStyle(
+                                  color: ColorManager.textColor,
+                                  ),),
                               ],
                             ),
                           );
                         },
                          itemCount:
-                      subBrandName =="التيما" ? Constants.timaStart.length :
-                      subBrandName =="فيرسا" ? Constants.versaStart.length :
-                      subBrandName =="روج" ? Constants.rogStart.length :
-                      subBrandName =="نافارا" ? Constants.nafaraStart.length :
-                      subBrandName =="سني هندي" ? Constants.sunnyStart.length :
-                      subBrandName =="جوك" ? Constants.gocStart.length :
-                      subBrandName =="سينترا" ? Constants.syntraStart.length : Constants.toyotaSubBrandName.length,
+                          subBrandName =="التيما" ? Constants.timaStart.length :
+                          subBrandName =="فيرسا" ? Constants.versaStart.length :
+                          subBrandName =="روج" ? Constants.rogStart.length :
+                          subBrandName =="نافارا" ? Constants.nafaraStart.length :
+                          subBrandName =="سني هندي" ? Constants.sunnyStart.length :
+                          subBrandName =="جوك" ? Constants.gocStart.length :
+                          subBrandName =="كامري" ? Constants.camryEnd.length :
+                          subBrandName =="افلون" ? Constants.eflonEnd.length :
+                          subBrandName =="لاندكروز" ? Constants.landEnd.length :
+                          subBrandName =="كورلا" ? Constants.croraEnd.length :
+                          subBrandName =="لكزس RX350" ? Constants.lacsStart.length :
+                          subBrandName =="برادو" ? Constants.bordoEnd.length :
+                          subBrandName =="هايلوكس" ? Constants.holoxEnd.length :
+                          subBrandName =="سينترا" ? Constants.syntraStart.length : Constants.toyotaSubBrandName.length,
                       ),
                     ),
                   ],
