@@ -55,7 +55,7 @@ class CartScreen extends StatelessWidget {
                           height: MediaQuery.sizeOf(context).height * .001,
                         );
                       },
-                      itemCount: 1),
+                      itemCount: AppCubit.get(context).cartList.length),
                 ),
                 const PricesColumn(),
                 Padding(

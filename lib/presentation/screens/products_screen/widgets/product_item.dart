@@ -34,7 +34,7 @@ class ProductItem extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Container(
-              height: MediaQuery.sizeOf(context).height * .25,
+              height: MediaQuery.sizeOf(context).height * .5,
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -114,9 +114,11 @@ class ProductItem extends StatelessWidget {
                                   .headlineMedium!
                                   .copyWith(
                                       fontSize:
-                                          MediaQuery.sizeOf(context).height * .018,
-                                      overflow: TextOverflow.ellipsis),
-                              textAlign: TextAlign.end,
+                                          MediaQuery.sizeOf(context).height * .02,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
                             ),
 
                             SizedBox(
@@ -132,6 +134,7 @@ class ProductItem extends StatelessWidget {
                                     .headlineSmall!
                                     .copyWith(
                                       color: ColorManager.grey,
+                                  fontSize: MediaQuery.sizeOf(context).height * .02,
                                     ),
                                 textAlign: TextAlign.end,
                                 overflow: TextOverflow.ellipsis,

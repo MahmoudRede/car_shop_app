@@ -3,7 +3,7 @@ import 'package:shop_car/styles/colors/color_manager.dart';
 
 class CancelButton extends StatelessWidget {
   final VoidCallback onTap;
-   CancelButton({required this.onTap,super.key});
+   const CancelButton({required this.onTap,super.key});
 
   @override
   Widget build(BuildContext context) {
